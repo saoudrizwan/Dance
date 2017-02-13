@@ -69,6 +69,8 @@ target 'ProjectName' do
 use_frameworks!
 
 pod 'Dance'
+
+end
 ```
 * Or drag and drop `Dance.swift` into your project.
 
