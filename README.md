@@ -264,7 +264,7 @@ Dance uses the MIT license. Please file an issue if you have any questions or if
 
 ## Contribute
 
-Dance is in its infancy, but v1.0.2 provides the barebones of a revolutionary new way to animate in iOS. Please feel free to send pull requests of any features you think would add to Dance and its philosophy.
+Dance is in its infancy, but v1.0 provides the barebones of a revolutionary new way to animate in iOS. Please feel free to send pull requests of any features you think would add to Dance and its philosophy.
 
 ## Questions?
 
