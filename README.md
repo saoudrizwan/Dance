@@ -1,12 +1,12 @@
 <p align="center">
-    <img src="https://cloud.githubusercontent.com/assets/7799382/22872668/d4b7831a-f16f-11e6-9fe9-204390496073.png" alt="Dance" />
+    <img src="https://cloud.githubusercontent.com/assets/7799382/22904979/523aa5d2-f1f3-11e6-87f4-7937e0c8fa21.png" alt="Dance" />
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Platform-iOS%2010%2B-blue.svg" alt="Platform: iOS 10+" />
-    <a href="https://developer.apple.com/swift" target="_blank"><img src="https://img.shields.io/badge/Language-Swift%203-orange.svg" alt="Language: Swift 3" /></a>
-    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://img.shields.io/badge/CocoaPods-v1.0-red.svg" alt="CocoaPods compatible" /></a>
-    <img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License: MIT" />
+    <img src="https://cloud.githubusercontent.com/assets/7799382/22878899/6cac52f2-f190-11e6-8891-8941e998275d.png" alt="Platform: iOS 10+" />
+    <a href="https://developer.apple.com/swift" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/22878900/6cac5612-f190-11e6-868a-09b9510e1d5b.png" alt="Language: Swift 3" /></a>
+    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/22878901/6cad9130-f190-11e6-990c-064280caead7.png" alt="CocoaPods compatible" /></a>
+    <img src="https://cloud.githubusercontent.com/assets/7799382/22878898/6caa4ade-f190-11e6-892c-0d98c67b2bd1.png" alt="License: MIT" />
 </p>
 
 <p align="center">
@@ -26,14 +26,14 @@ class MyViewController: UIViewController {
 
     var circle = UIView()
 
-    override func viewDidAppear() {
-        super.viewDidAppear()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
         circle.dance.animate(duration: 2.0, curve: .easeInOut) {
             $0.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             $0.center = self.view.center
             $0.backgroundColor = .blue
-        }.addCompletion { (_) in
+        }.addCompletion { _ in
             print("Animation completed!")
             self.view.backgroundColor = .green
         }.start(after: 5.0)
@@ -50,8 +50,8 @@ With Dance, you can create referenceable animations attached to views. That mean
 * `.pause()`
 * `.start()`
 * `.reverse()`
-* `.setProgress(to: 0.75)`
-* `.finish(at: .end)`
+* `.setProgress(to:)`
+* `.finish(at:)`
 
 anywhere the view can be referenced.
 
@@ -61,7 +61,7 @@ Dance requires **iOS 10+** and is compatible with **Swift 3** projects.
 
 ## Installation
 
-* Installation for <a href="https://cocoapods.org" target="_blank">CocoaPods</a>:
+* Installation for <a href="https://guides.cocoapods.org/using/using-cocoapods.html" target="_blank">CocoaPods</a>:
 
 ```ruby
 platform :ios, '10.0'
@@ -80,7 +80,19 @@ And `import Dance` in the files you'd like to use it.
 
 *It's recommended to look through the example project—it has detailed documentation of everything Dance has to offer.*
 
-**Note:** throughout this document, `circle` will act as the view being animated. You can use Dance on any `UIView` subclass, such as `UILabel`, `UITextField`, `UIButton`, etc.
+**Note:** throughout this document, `circle` will act as the view being animated. You can use Dance on any instance of a `UIView` or `UIView` subclass, such as `UILabel`, `UITextField`, `UIButton`, etc.
+
+**Using Dance is easy.**
+
+1. [Create an animation](#creating-an-animation) for a view, and optionally [add completion blocks](#adding-completion-blocks).
+
+2. [Start](#starting-an-animation) the animation.
+
+3. [Pause](#pausing-an-animation), [reverse](#reversing-an-animation), or [scrub through](#scrubbing-through-an-animation) the animation.
+
+4. [Finish](#finishing-an-animation) the animation, triggering any completion blocks.
+
+
 
 ### Creating an Animation
 
@@ -107,7 +119,7 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 
 #### <a href="https://developer.apple.com/reference/uikit/uitimingcurveprovider" target="_blank">UITimingCurveProvider</a>
 ```swift
-let timingParameters = UISpringTimingParameters(mass: 1.0, stiffness: 0.2, damping: 0.5, initialVelocity: CGVector(dx: 0, dy: 0))
+let timingParameters = UISpringTimingParameters(mass: 1.0, stiffness: 0.2, damping: 0.5, initialVelocity: CGVector(dx: 0, dy: 5))
 
 circle.dance.animate(duration: 2.0, timingParameters: timingParameters) {
     $0.center = newCenter
@@ -123,6 +135,9 @@ circle.dance.animate(duration: 2.0, controlPoint1: controlPoint1, controlPoint2:
     $0.center = newCenter
 }
 ```
+<img src="https://cloud.githubusercontent.com/assets/7799382/22905836/b5d6875c-f1f6-11e6-9ad8-30373ce211e8.png" alt="bezier curve">
+
+<sub>https://developer.apple.com/videos/play/wwdc2016/216/</sub>
 
 #### Sping-based Timing Information
 ```swift
@@ -140,40 +155,6 @@ circle.dance.start()
 circle.dance.start(after: 5.0) // for a delay (in seconds) before starting the animation
 ```
 
-### Pausing an Animation
-```swift
-circle.dance.pause()
-```
-```swift
-circle.dance.pause(after: 5.0) // for a delay (in seconds) before pausing the animation
-```
-**Note:** this won't render the view at the paused position, you must call <a href="#finishing-animation">`.finish(at:)`</a> to do that.
-
-### Reversing an Animation
-Calling this method will reverse the animation in its tracks, like playing a video backwards.
-```swift
-circle.dance.reverse()
-```
-```swift
-circle.dance.isReversed = true
-```
-**Note:** the position value in the completion block will stay the same after calling `.reverse()`. For example, if a view's animation is reversed and the view ends up in its initial position, then the completion closure's position parameter will be `.start`, not `.end`.
-
-### Scrubbing through an Animation
-Dance animations are like movies—you can scrub through them using the `.progress` property. 
-```swift
-circle.dance.setProgress(to: 0.5) // takes value between 0 and 1
-```
-```swift
-circle.dance.progress = 0.5
-```
-<p id="#finishing-animation"></p>
-### Finishing an Animation
-Animations will automatically finish when they complete and reach their target values, triggering any completion blocks. However if you pause an animation and/or want to finish that animation early, you must call `.finish(at:)`.
-```swift
-circle.dance.finish(at: .current) // or .start, .end
-```
-
 ### Adding Completion Blocks
 Add as many completion blocks as you need, wherever you need to. When an animation finishes, either by playing out the set animation or by calling `.finish(at:)`, then all completion blocks are triggered.
 ```swift
@@ -188,22 +169,59 @@ circle.dance.addCompletion { (position) in
     }
 }
 ```
+**Note:** you can't add a completion block to a finished animation.
+
+### Pausing an Animation
+```swift
+circle.dance.pause()
+```
+```swift
+circle.dance.pause(after: 5.0) // for a delay (in seconds) before pausing the animation
+```
+**Note:** this won't render the view at the paused position, you must call <a href="#finishing-an-animation">`.finish(at:)`</a> to do that.
+
+
+### Reversing an Animation
+Calling this method will reverse the animation in its tracks, like playing a video backwards.
+```swift
+circle.dance.reverse()
+```
+```swift
+circle.dance.isReversed = true
+```
+**Note:** the position value in the completion block will stay the same after calling `.reverse()`. For example, if a view's animation is reversed and the view ends up in its initial position, then the completion closure's position parameter will be `.start`, not `.end`.
+
+
+### Scrubbing Through an Animation
+Dance animations are like movies—you can scrub through them using the `.progress` property. 
+```swift
+circle.dance.setProgress(to: 0.5) // takes value 0-1
+```
+```swift
+circle.dance.progress = 0.5
+```
+
+### Finishing an Animation
+Animations will automatically finish when they complete and reach their target values, triggering any completion blocks. However if you pause an animation and/or want to finish that animation early, you must call `.finish(at:)`.
+```swift
+circle.dance.finish(at: .current) // or .start, .end
+```
 
 ### Dance Properties 
 ```swift
-circle.dance.hasAnimation: Bool
+circle.dance.hasAnimation: Bool { get }
 ```
 ```swift
-circle.dance.progress: CGFloat
+circle.dance.progress: CGFloat { get, set }
 ```
 ```swift
-circle.dance.state: UIViewAnimatingState // .inactive, .active, .stopped
+circle.dance.state: UIViewAnimatingState { get } // .inactive, .active, .stopped
 ```
 ```swift
-circle.dance.isRunning: Bool
+circle.dance.isRunning: Bool { get }
 ```
 ```swift
-circle.dance.isReversed: Bool
+circle.dance.isReversed: Bool { get, set }
 ```
 
 ### What About Constraints?
@@ -222,6 +240,7 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 ### Function Chaining
 
 Dance allows you to chain multiple animation commands together, resulting in an elegant and easy-to-read syntax.
+For example:
 ```swift
 circle.dance.animate(duration: 2.0, curve: .easeInOut) {
     $0.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
@@ -237,9 +256,12 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 circle.dance.pause().setProgress(to: 0.25)
 ```
 ```swift
+print(circle.dance.pause().progress)
+```
+```swift
 circle.dance.start().reverse()
 ```
-<p id="#animatable-properties"></p>
+
 ## Animatable Properties
 
 | UIView Property      | Changes you can make                                       |
@@ -252,7 +274,7 @@ circle.dance.start().reverse()
 | [backgroundColor](https://developer.apple.com/reference/uikit/uiview/1622591-backgroundcolor) | Modify this property to change the view’s background color. |
 | [contentStretch](https://developer.apple.com/reference/uikit/uiview/1622511-contentstretch)   | Modify this property to change the way the view’s contents are stretched to fill the available space. |
 
-<a href="https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html" target="_blank">https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</a>
+<sub>https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</sub>
 
 ## Documentation
 Option + click on any of Dance's methods for detailed documentation.
@@ -260,16 +282,16 @@ Option + click on any of Dance's methods for detailed documentation.
 
 ## License
 
-Dance uses the MIT license. Please file an issue if you have any questions or if you'd like to share how you're using this tool.
+Dance uses the MIT license. Please file an issue if you have any questions or if you'd like to share how you're using Dance.
 
 ## Contribute
 
-Dance is a revolutionary new way to animate in iOS. Please feel free to send pull requests of any features you think would add to Dance and its philosophy.
+Dance is in its infancy, but v1.0 provides the barebones of a revolutionary new way to animate in iOS. Please feel free to send pull requests of any features you think would add to Dance and its philosophy.
 
 ## Questions?
 
-Contact me by <a href="mailto:hello@saoudmr.com">email</a> or <a href="https://twitter.com/sdrzn" target="_blank">twitter</a>.
+Contact me by email <a href="mailto:hello@saoudmr.com">hello@saoudmr.com</a>, or by twitter <a href="https://twitter.com/sdrzn" target="_blank">@sdrzn</a>. Please create an <a href="https://github.com/saoudrizwan/Dance/issues">issue</a> if you come across a bug or would like a feature to be added.
 
-## Credit
+## Credits
 
 Disco Ball Icon by [Effach from the Noun Project](https://thenounproject.com/francois.hardy.359/)
