@@ -16,7 +16,7 @@
   • <a href="#license">License</a>
 </p>
 
-Dance is a **lightweight** and **straightforward** animation framework built upon the new <a href="https://developer.apple.com/reference/uikit/uiviewpropertyanimator" target="_blank">`UIViewPropertyAnimator`</a> class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { ... }` which can then be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially **forgiving**, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
+Dance is a **powerful** and **straightforward** animation framework built upon the new <a href="https://developer.apple.com/reference/uikit/uiviewpropertyanimator" target="_blank">`UIViewPropertyAnimator`</a> class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { ... }`, which can then be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially **forgiving**, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
 
 ## Quick Start
 ```swift
@@ -50,7 +50,7 @@ With Dance, you can create referenceable animations attached to views. That mean
 * `.pause()`
 * `.start()`
 * `.reverse()`
-* `.progress = 0.85`
+* `.setProgress(to: 0.75)`
 * `.finish(at: .end)`
 
 anywhere the view can be referenced.
@@ -64,9 +64,13 @@ Dance requires **iOS 10+** and is compatible with **Swift 3** projects.
 * Installation for <a href="https://cocoapods.org" target="_blank">CocoaPods</a>:
 
 ```ruby
+platform :ios, '10.0'
+target 'ProjectName' do
 use_frameworks!
 
 pod 'Dance'
+
+end
 ```
 * Or drag and drop `Dance.swift` into your project.
 
@@ -89,7 +93,7 @@ And `import Dance` in the files you'd like to use it.
 * linear
 
 ```swift
-circle.dance.animate(duration: 10.0, curve: .easeInOut) { (make) in
+circle.dance.animate(duration: 2.0, curve: .easeInOut) { (make) in
     make.center = newCenter
 }
 ```
@@ -105,7 +109,7 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 ```swift
 let timingParameters = UISpringTimingParameters(mass: 1.0, stiffness: 0.2, damping: 0.5, initialVelocity: CGVector(dx: 0, dy: 0))
 
-circle.dance.animate(duration: 10.0, timingParameters: timingParameters) {
+circle.dance.animate(duration: 2.0, timingParameters: timingParameters) {
     $0.center = newCenter
 }
 ```
@@ -115,14 +119,14 @@ circle.dance.animate(duration: 10.0, timingParameters: timingParameters) {
 let controlPoint1 = CGPoint(x: 0, y: 1)
 let controlPoint2 = CGPoint(x: 1, y: 0)
         
-circle.dance.animate(duration: 10.0, controlPoint1: controlPoint1, controlPoint2: controlPoint2) {
+circle.dance.animate(duration: 2.0, controlPoint1: controlPoint1, controlPoint2: controlPoint2) {
     $0.center = newCenter
 }
 ```
 
 #### Sping-based Timing Information
 ```swift
-circle.dance.animate(duration: 10.0, dampingRatio: 0.5) {
+circle.dance.animate(duration: 2.0, dampingRatio: 0.5) {
     $0.center = newCenter
 }
 ```
@@ -227,10 +231,10 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
     if position == .end {
         print("Animation reached the target end position!")
     }
-}.start(after: 2.0)
+}.start(after: 5.0)
 ```
 ```swift
-circle.dance.pause().setProgress(to: 0.9)
+circle.dance.pause().setProgress(to: 0.25)
 ```
 ```swift
 circle.dance.start().reverse()
@@ -250,6 +254,10 @@ circle.dance.start().reverse()
 
 <a href="https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html" target="_blank">https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</a>
 
+## Documentation
+Option + click on any of Dance's methods for detailed documentation.
+<img src="https://cloud.githubusercontent.com/assets/7799382/22877101/ae6ae940-f188-11e6-8f60-7c69b94ade33.png" alt="documentation">
+
 ## License
 
 Dance uses the MIT license. Please file an issue if you have any questions or if you'd like to share how you're using this tool.
@@ -264,4 +272,4 @@ Contact me by <a href="mailto:hello@saoudmr.com">email</a> or <a href="https://t
 
 ## Credit
 
-Disco Logo by [Effach from the Noun Project](https://thenounproject.com/francois.hardy.359/)
+Disco Ball Icon by [Effach from the Noun Project](https://thenounproject.com/francois.hardy.359/)
