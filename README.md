@@ -50,8 +50,8 @@ With Dance, you can create referenceable animations attached to views. That mean
 * `.pause()`
 * `.start()`
 * `.reverse()`
-* `.setProgress(to: 0.75)`
-* `.finish(at: .end)`
+* `.setProgress(to:)`
+* `.finish(at:)`
 
 anywhere the view can be referenced.
 
