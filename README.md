@@ -93,7 +93,7 @@ And `import Dance` in the files you'd like to use it.
 * linear
 
 ```swift
-circle.dance.animate(duration: 10.0, curve: .easeInOut) { (make) in
+circle.dance.animate(duration: 2.0, curve: .easeInOut) { (make) in
     make.center = newCenter
 }
 ```
@@ -109,7 +109,7 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 ```swift
 let timingParameters = UISpringTimingParameters(mass: 1.0, stiffness: 0.2, damping: 0.5, initialVelocity: CGVector(dx: 0, dy: 0))
 
-circle.dance.animate(duration: 10.0, timingParameters: timingParameters) {
+circle.dance.animate(duration: 2.0, timingParameters: timingParameters) {
     $0.center = newCenter
 }
 ```
@@ -119,14 +119,14 @@ circle.dance.animate(duration: 10.0, timingParameters: timingParameters) {
 let controlPoint1 = CGPoint(x: 0, y: 1)
 let controlPoint2 = CGPoint(x: 1, y: 0)
         
-circle.dance.animate(duration: 10.0, controlPoint1: controlPoint1, controlPoint2: controlPoint2) {
+circle.dance.animate(duration: 2.0, controlPoint1: controlPoint1, controlPoint2: controlPoint2) {
     $0.center = newCenter
 }
 ```
 
 #### Sping-based Timing Information
 ```swift
-circle.dance.animate(duration: 10.0, dampingRatio: 0.5) {
+circle.dance.animate(duration: 2.0, dampingRatio: 0.5) {
     $0.center = newCenter
 }
 ```
@@ -231,10 +231,10 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
     if position == .end {
         print("Animation reached the target end position!")
     }
-}.start(after: 2.0)
+}.start(after: 5.0)
 ```
 ```swift
-circle.dance.pause().setProgress(to: 0.9)
+circle.dance.pause().setProgress(to: 0.25)
 ```
 ```swift
 circle.dance.start().reverse()
