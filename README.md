@@ -16,7 +16,7 @@
   • <a href="#license">License</a>
 </p>
 
-Dance is a lightweight and straightforward animations framework built upon the new `UIViewPropertyAnimator` class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { … }` and can be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially forgiving, and provides the power that `UIViewPropertyAnimator` brings to iOS while at the same time maintaining ease of use.
+Dance is a **lightweight** and **straightforward** animations framework built upon the new `[UIViewPropertyAnimator](https://developer.apple.com/reference/uikit/uiviewpropertyanimator)` class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { … }` and can be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially forgiving, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
 
 ## Quick Start
 ```swift
@@ -43,6 +43,7 @@ class MyViewController: UIViewController {
     func pauseAnimation() {
         circle.dance.pause()
     }
+    
 }
 ```
 
@@ -74,7 +75,7 @@ And `import Dance` in the files you'd like to use it.
 
 ## Usage
 
-*I recommend looking through the example project, it has detailed documentation of everything Dance has to offer.*
+*I recommend looking through the example project—it has detailed documentation of everything Dance has to offer.*
 
 ### Creating an Animation
 
@@ -114,19 +115,19 @@ let controlPoint1 = CGPoint(x: 0, y: 1)
 let controlPoint2 = CGPoint(x: 1, y: 0)
         
 circle.dance.animate(duration: 10.0, controlPoint1: controlPoint1, controlPoint2: controlPoint2) {
-    $0.center = self.endPosition
+    $0.center = newCenter
 }
 ```
 
 #### Sping-based Timing Information
 ```swift
 circle.dance.animate(duration: 10.0, springiness: 0.5) {
-    $0.center = self.endPosition
+    $0.center = newCenter
 }
 ```
 
 ### Starting an Animation
-After creating an animation block using `.animate`, the animation doesn't start until you call `.start()`.
+After creating an animation block using `.animate { }`, the animation doesn't start until you call `.start()`.
 ```swift
 circle.dance.start()
 ```
@@ -135,24 +136,23 @@ circle.dance.start(after: 5.0) // for a delay (in seconds) before starting the a
 ```
 
 ### Pausing an Animation
-When an animation is running, you can pause it. 
 ```swift
 circle.dance.pause()
 ```
 ```swift
 circle.dance.pause(after: 5.0) // for a delay (in seconds) before pausing the animation
 ```
-**Note:** this won't render the view at the paused position, you must call [`.finish(at: .current)`](#finish) to do that.
+**Note:** this won't render the view at the paused position, you must call [`.finish(at: .current)`](#finishing-animation) to do that.
 
-### Reverse an Animation
-Calling this method will reverse the animation in its tracks.
+### Reversing an Animation
+Calling this method will reverse the animation in its tracks, like playing a video backwards.
 ```swift
 circle.dance.reverse()
 ```
 ```swift
 circle.dance.isReversed = true
 ```
-**Note:** the position value in the completion block will stay the same after calling `.reverse()`. For example, if a view's animation is reversed and the view ends up in its initial position, then the position parameter will be `.start`, not `.end`.
+**Note:** the position value in the completion block will stay the same after calling `.reverse()`. For example, if a view's animation is reversed and the view ends up in its initial position, then the completion closure's position parameter will be `.start`, not `.end`.
 
 ### Scrubbing through an Animation
 Dance animations are like movies—you can scrub through them using the `.progress` property. 
@@ -162,9 +162,9 @@ circle.dance.setProgress(to: 0.5) // takes value between 0 and 1
 ```swift
 circle.dance.progress = 0.5
 ```
-
+<p id="#finishing-animation"></p>
 ### Finishing an Animation
-Animations will automatically finish when they complete and reach their target values, triggering any completion blocks. However if you pause an animation and/or want to finish an animation early, you must call `.finish(at:)`.
+Animations will automatically finish when they complete and reach their target values, triggering any completion blocks. However if you pause an animation and/or want to finish that animation early, you must call `.finish(at:)`.
 ```swift
 circle.dance.finish(at: .current) // or .start, .end
 ```
@@ -188,7 +188,7 @@ circle.dance.isReversed: Bool
 
 ### What About Constraints?
 
-Dance works great with constraints, to animate constraint changes:
+Dance works great with constraints. To animate constraint changes:
 
 ```swift
 // update constraints for circle and/or its subviews first
@@ -233,7 +233,7 @@ circle.dance.start().reverse()
 | [backgroundColor](https://developer.apple.com/reference/uikit/uiview/1622591-backgroundcolor) | Modify this property to change the view’s background color. |
 | [contentStretch](https://developer.apple.com/reference/uikit/uiview/1622511-contentstretch)   | Modify this property to change the way the view’s contents are stretched to fill the available space. |
 
-Source: https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html
+https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html
 
 ## License
 
@@ -247,6 +247,6 @@ Dance is a revolutionary new way to animate in iOS. Please feel free to send pul
 
 Contact me by [email](mailto:hello@saoudmr.com) or [twitter](https://twitter.com/sdrzn).
 
-## Credits
+## Credit
 
 Disco Logo by [Effach from the Noun Project](https://thenounproject.com/francois.hardy.359/)
