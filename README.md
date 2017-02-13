@@ -119,7 +119,7 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 
 #### <a href="https://developer.apple.com/reference/uikit/uitimingcurveprovider" target="_blank">UITimingCurveProvider</a>
 ```swift
-let timingParameters = UISpringTimingParameters(mass: 1.0, stiffness: 0.2, damping: 0.5, initialVelocity: CGVector(dx: 0, dy: 0))
+let timingParameters = UISpringTimingParameters(mass: 1.0, stiffness: 0.2, damping: 0.5, initialVelocity: CGVector(dx: 0, dy: 5))
 
 circle.dance.animate(duration: 2.0, timingParameters: timingParameters) {
     $0.center = newCenter
