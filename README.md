@@ -80,7 +80,7 @@ And `import Dance` in the files you'd like to use it.
 
 *It's recommended to look through the example project—it has detailed documentation of everything Dance has to offer.*
 
-**Note:** throughout this document, `circle` will act as the view being animated. You can use Dance on any `UIView` subclass, such as `UILabel`, `UITextField`, `UIButton`, etc.
+**Note:** throughout this document, `circle` will act as the view being animated. You can use Dance on any instance of a `UIView` or `UIView` subclass, such as `UILabel`, `UITextField`, `UIButton`, etc.
 
 ### Creating an Animation
 
