@@ -83,6 +83,7 @@ And `import Dance` in the files you'd like to use it.
 **Note:** throughout this document, `circle` will act as the view being animated. You can use Dance on any instance of a `UIView` or `UIView` subclass, such as `UILabel`, `UITextField`, `UIButton`, etc.
 
 **Using Dance is easy.**
+
 1. [Create an animation](#creating-animation) for a view, and optionally [add completion blocks](#completion-animation).
 
 2. [Start](#starting-animation) the animation.
@@ -92,8 +93,8 @@ And `import Dance` in the files you'd like to use it.
 4. [Finish](#finishing-animation) the animation, triggering any completion blocks.
 
 
-<p id="#creating-animation"></p>
-### Creating an Animation
+
+### <a name="#creating-animation">Creating an Animation</a>
 
 [What properties can I animate?](#animatable-properties)
 
@@ -141,8 +142,8 @@ circle.dance.animate(duration: 2.0, dampingRatio: 0.5) {
     $0.center = newCenter
 }
 ```
-<p id="#starting-animation"></p>
-### Starting an Animation
+
+### <a name="#starting-animation">Starting an Animation</a>
 After creating an animation block using `.animate { ... }`, the animation doesn't start until you call `.start()`.
 ```swift
 circle.dance.start()
@@ -150,8 +151,8 @@ circle.dance.start()
 ```swift
 circle.dance.start(after: 5.0) // for a delay (in seconds) before starting the animation
 ```
-<p id="#pausing-animation"></p>
-### Pausing an Animation
+
+### <a name="#pausing-animation">Pausing an Animation</a>
 ```swift
 circle.dance.pause()
 ```
@@ -160,8 +161,8 @@ circle.dance.pause(after: 5.0) // for a delay (in seconds) before pausing the an
 ```
 **Note:** this won't render the view at the paused position, you must call <a href="#finishing-animation">`.finish(at:)`</a> to do that.
 
-<p id="#reversing-animation"></p>
-### Reversing an Animation
+
+### <a id="#reversing-animation">Reversing an Animation</a>
 Calling this method will reverse the animation in its tracks, like playing a video backwards.
 ```swift
 circle.dance.reverse()
@@ -171,8 +172,8 @@ circle.dance.isReversed = true
 ```
 **Note:** the position value in the completion block will stay the same after calling `.reverse()`. For example, if a view's animation is reversed and the view ends up in its initial position, then the completion closure's position parameter will be `.start`, not `.end`.
 
-<p id="#scrubbing-animation"></p>
-### Scrubbing through an Animation
+
+### <a name="#scrubbing-animation">Scrubbing through an Animation</a>
 Dance animations are like movies—you can scrub through them using the `.progress` property. 
 ```swift
 circle.dance.setProgress(to: 0.5) // takes value between 0 and 1
@@ -180,14 +181,14 @@ circle.dance.setProgress(to: 0.5) // takes value between 0 and 1
 ```swift
 circle.dance.progress = 0.5
 ```
-<p id="#finishing-animation"></p>
-### Finishing an Animation
+
+### <a name="#finishing-animation">Finishing an Animation</a>
 Animations will automatically finish when they complete and reach their target values, triggering any completion blocks. However if you pause an animation and/or want to finish that animation early, you must call `.finish(at:)`.
 ```swift
 circle.dance.finish(at: .current) // or .start, .end
 ```
-<p id="#completion-animation"></p>
-### Adding Completion Blocks
+
+### <a name="#completion-animation">Adding Completion Blocks</a>
 Add as many completion blocks as you need, wherever you need to. When an animation finishes, either by playing out the set animation or by calling `.finish(at:)`, then all completion blocks are triggered.
 ```swift
 circle.dance.addCompletion { (position) in
@@ -252,8 +253,8 @@ circle.dance.pause().setProgress(to: 0.25)
 ```swift
 circle.dance.start().reverse()
 ```
-<p id="#animatable-properties"></p>
-## Animatable Properties
+
+## <a name="#animatable-properties">Animatable Properties</a>
 
 | UIView Property      | Changes you can make                                       |
 | -------------------- |------------------------------------------------------------|
