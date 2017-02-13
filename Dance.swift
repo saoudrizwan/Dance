@@ -441,19 +441,19 @@ public class Dance {
 extension UIView {
     public var dance: Dance {
         get {
-            return ExtensionStoredPropertyHandler.associatedObject(base: self, key: &ExtensionStoredPropertyHandler.danceKey) {
+            return DanceExtensionStoredPropertyHandler.associatedObject(base: self, key: &DanceExtensionStoredPropertyHandler.danceKey) {
                 return Dance(dancingView: self)
             }
         }
         set {
-            ExtensionStoredPropertyHandler.associateObject(base: self, key: &ExtensionStoredPropertyHandler.danceKey, value: newValue)
+            DanceExtensionStoredPropertyHandler.associateObject(base: self, key: &DanceExtensionStoredPropertyHandler.danceKey, value: newValue)
         }
     }
 }
 
 // MARK: - Boilerplate code to store properties in Extensions using Associated Objects
 
-class ExtensionStoredPropertyHandler {
+class DanceExtensionStoredPropertyHandler {
     static var danceKey: UInt8 = 0
     static func associatedObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initialiser: () -> ValueType) -> ValueType {
         if let associated = objc_getAssociatedObject(base, key)
