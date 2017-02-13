@@ -355,9 +355,9 @@ public class Dance {
     ///
     /// - Parameters:
     ///   - duration: The total duration of the animations, measured in seconds. If you specify a negative value or 0, the changes are made without animating them.
-    ///   - springiness: The damping ratio for the animation. From Apple: "The damping ratio for the spring animation as it approaches its quiescent state. To smoothly decelerate the animation without oscillation, use a value of 1. Employ a damping ratio closer to zero to increase oscillation."
+    ///   - dampingRatio: The damping ratio for the spring animation as it approaches its quiescent state. To smoothly decelerate the animation without oscillation, use a value of 1. Employ a damping ratio closer to zero to increase oscillation.
     ///   - animation: Any changes to commit to the view during the animation (can be any property defined in Table 4-1 in https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html)
-    @discardableResult public func animate(duration: TimeInterval, springiness: CGFloat, _ animation: @escaping (make) -> Void) -> Dance {
+    @discardableResult public func animate(duration: TimeInterval, dampingRatio: CGFloat, _ animation: @escaping (make) -> Void) -> Dance {
         
         if self.hasAnimation {
             DanceFactory.instance.finishAnimation(tag: dancingView.tag, at: .current)
@@ -366,7 +366,7 @@ public class Dance {
         dancingView.tag = DanceFactory.instance.tagCount
         DanceFactory.instance.tagCount += 1
         
-        DanceFactory.instance.createNewAnimator(tag: dancingView.tag, duration: duration, dampingRatio: springiness) {
+        DanceFactory.instance.createNewAnimator(tag: dancingView.tag, duration: duration, dampingRatio: dampingRatio) {
             animation(self.dancingView)
         }
         

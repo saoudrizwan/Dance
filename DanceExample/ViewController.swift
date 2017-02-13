@@ -94,10 +94,10 @@ class ViewController: UIViewController {
         
         /*
          4) sping-based timing information
-         Basically, springiness should be a CGFloat between 0 and 1. The closer it is to 0, the 'springy-er' the animation will be. The closer it is to 1, the damper the spring animation will be.
+         Basically, dampingRatio should be a CGFloat between 0 and 1. The closer it is to 0, the 'springy-er' the animation will be. The closer it is to 1, the damper the spring animation will be.
          */
         
-        circle.dance.animate(duration: 10.0, springiness: 0.5) {
+        circle.dance.animate(duration: 10.0, dampingRatio: 0.5) {
             $0.center = self.endPosition
         }
         
