@@ -152,6 +152,20 @@ class ViewController: UIViewController {
              self.triangle.center = newCenter // triangle is a view completely unassociated with circle, but Dance will make it a part of circle's animation block. So whenever you pause circle's dance animation, then the triangle gets paused as well. But you can't access that animation using triangle.dance, since the animation is associated with circle.
          }
          */
+        
+        /* ---------- DEBUGGING ----------
+         
+         Debugging with Dance is easy. Let's say you accidentally call circle.dance.start() before you ever create a Dance animation for circle.
+         Instead of causing a runtime error or fatal error, Dance will print the following:
+         
+            ** Dance Error: view with dance.tag = <tag> does not have an active animation! **
+         
+         Dance assigns each dance animation a dance tag, which you can access like so:
+         
+            circle.dance.tag
+         
+         This way you can keep track of you views' dance animations and easily handle any of Dance's error print logs.
+         */
     }
     
     @IBAction func startTapped(_ sender: Any) {

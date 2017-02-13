@@ -31,7 +31,7 @@ fileprivate class DanceFactory {
     // MARK: UIViewPropertyAnimator Wrapper
     
     var tagCount: Int = 0
-    var animators = [Int: UIViewPropertyAnimator]() // [UIView.tag: UIViewPropertyAnimator()]
+    var animators = [Int: UIViewPropertyAnimator]() // [dance.tag: UIViewPropertyAnimator()]
     
     /// Initialize a UIViewPropertyAnimator with timing parameters.
     func createNewAnimator(tag: Int, duration: TimeInterval, timingParameters: UITimingCurveProvider, animations: @escaping (() -> Void)) {
@@ -216,16 +216,22 @@ fileprivate class DanceFactory {
     func handle(error: DanceError, forViewWithTag tag: Int) {
         switch error {
         case .noAnimation:
-            print("\n** Dance Error: view \(tag) does not have an animation in progress! **\n")
+            print("** Dance Error: view with dance.tag = \(tag) does not have an active animation! **")
         }
     }
+    
 }
 
-// MARK: - Dance (should be accessed through UIView extension variable)
+
+// MARK: - Dance
+
+// This class should only be accessed through the 'dance' variable declared in the UIView extension below.
+// (Dance needs to have a public modifier in order to be accessed globally through the UIView Extension.)
 
 public class Dance {
     
     fileprivate var dancingView: UIView!
+    public var tag: Int = 0
     
     fileprivate init(dancingView: UIView) {
         self.dancingView = dancingView
@@ -236,7 +242,7 @@ public class Dance {
     /// GET: Returns a boolean value of true if the view has an animation attached to it, and false otherwise.
     public var hasAnimation: Bool {
         get {
-            return DanceFactory.instance.getHasAnimation(tag: dancingView.tag)
+            return DanceFactory.instance.getHasAnimation(tag: self.tag)
         }
     }
     
@@ -244,24 +250,24 @@ public class Dance {
     /// SET: Sets the view's animation's fraction complete. If this is set in the middle of a running animation, the view will jump to it's new fraction complete value seamlessly.
     public var progress: CGFloat {
         get {
-            return DanceFactory.instance.getFractionComplete(tag: dancingView.tag)
+            return DanceFactory.instance.getFractionComplete(tag: self.tag)
         }
         set {
-            DanceFactory.instance.setFractionComplete(tag: dancingView.tag, newFractionComplete: newValue)
+            DanceFactory.instance.setFractionComplete(tag: self.tag, newFractionComplete: newValue)
         }
     }
     
     /// GET: Returns the view's current animation state (inactive, active, stopped). Dance ensures that your animation doesn't run into any problems, so you should only ever receive .inactive or .active for any view.
     public var state: UIViewAnimatingState {
         get {
-            return DanceFactory.instance.getState(tag: dancingView.tag)
+            return DanceFactory.instance.getState(tag: self.tag)
         }
     }
     
     /// GET: Returns a boolean value indicating whether the view's animation is currently running (active and started) or not.
     public var isRunning: Bool {
         get {
-            return DanceFactory.instance.getIsRunning(tag: dancingView.tag)
+            return DanceFactory.instance.getIsRunning(tag: self.tag)
         }
     }
     
@@ -269,10 +275,10 @@ public class Dance {
     /// SET: Sets the view's animation to a reversed state. NOTE: you may also call .reverse() on any view to reverse or de-reverse its animation.
     public var isReversed: Bool {
         get {
-            return DanceFactory.instance.getIsReversed(tag: dancingView.tag)
+            return DanceFactory.instance.getIsReversed(tag: self.tag)
         }
         set {
-            DanceFactory.instance.setIsReversed(tag: dancingView.tag, isReversed: newValue)
+            DanceFactory.instance.setIsReversed(tag: self.tag, isReversed: newValue)
         }
     }
     
@@ -293,13 +299,13 @@ public class Dance {
     @discardableResult public func animate(duration: TimeInterval, curve: UIViewAnimationCurve, _ animation: @escaping (make) -> Void) -> Dance {
         
         if self.hasAnimation {
-            DanceFactory.instance.finishAnimation(tag: dancingView.tag, at: .current)
+            DanceFactory.instance.finishAnimation(tag: self.tag, at: .current)
         }
         
-        dancingView.tag = DanceFactory.instance.tagCount
+        self.tag = DanceFactory.instance.tagCount
         DanceFactory.instance.tagCount += 1
         
-        DanceFactory.instance.createNewAnimator(tag: dancingView.tag, duration: duration, curve: curve) {
+        DanceFactory.instance.createNewAnimator(tag: self.tag, duration: duration, curve: curve) {
             animation(self.dancingView)
         }
         
@@ -315,13 +321,13 @@ public class Dance {
     @discardableResult public func animate(duration: TimeInterval, timingParameters: UITimingCurveProvider, _ animation: @escaping (make) -> Void) -> Dance {
         
         if self.hasAnimation {
-            DanceFactory.instance.finishAnimation(tag: dancingView.tag, at: .current)
+            DanceFactory.instance.finishAnimation(tag: self.tag, at: .current)
         }
         
-        dancingView.tag = DanceFactory.instance.tagCount
+        self.tag = DanceFactory.instance.tagCount
         DanceFactory.instance.tagCount += 1
         
-        DanceFactory.instance.createNewAnimator(tag: dancingView.tag, duration: duration, timingParameters: timingParameters) {
+        DanceFactory.instance.createNewAnimator(tag: self.tag, duration: duration, timingParameters: timingParameters) {
             animation(self.dancingView)
         }
         
@@ -338,13 +344,13 @@ public class Dance {
     @discardableResult public func animate(duration: TimeInterval, controlPoint1 point1: CGPoint, controlPoint2 point2: CGPoint, _ animation: @escaping (make) -> Void) -> Dance {
         
         if self.hasAnimation {
-            DanceFactory.instance.finishAnimation(tag: dancingView.tag, at: .current)
+            DanceFactory.instance.finishAnimation(tag: self.tag, at: .current)
         }
         
-        dancingView.tag = DanceFactory.instance.tagCount
+        self.tag = DanceFactory.instance.tagCount
         DanceFactory.instance.tagCount += 1
         
-        DanceFactory.instance.createNewAnimator(tag: dancingView.tag, duration: duration, controlPoint1: point1, controlPoint2: point2) {
+        DanceFactory.instance.createNewAnimator(tag: self.tag, duration: duration, controlPoint1: point1, controlPoint2: point2) {
             animation(self.dancingView)
         }
         
@@ -360,13 +366,13 @@ public class Dance {
     @discardableResult public func animate(duration: TimeInterval, dampingRatio: CGFloat, _ animation: @escaping (make) -> Void) -> Dance {
         
         if self.hasAnimation {
-            DanceFactory.instance.finishAnimation(tag: dancingView.tag, at: .current)
+            DanceFactory.instance.finishAnimation(tag: self.tag, at: .current)
         }
         
-        dancingView.tag = DanceFactory.instance.tagCount
+        self.tag = DanceFactory.instance.tagCount
         DanceFactory.instance.tagCount += 1
         
-        DanceFactory.instance.createNewAnimator(tag: dancingView.tag, duration: duration, dampingRatio: dampingRatio) {
+        DanceFactory.instance.createNewAnimator(tag: self.tag, duration: duration, dampingRatio: dampingRatio) {
             animation(self.dancingView)
         }
         
@@ -377,13 +383,13 @@ public class Dance {
     ///
     /// - Parameter completion: closure with a UIViewAnimatingPosition parameter that tells you what position the view's animation is currently at (end, start, current). NOTE: If you reverse an animation, the end position will be the initial starting position before you reversed the animation (and vice versa.)
     @discardableResult public func addCompletion(_ completion: @escaping (UIViewAnimatingPosition) -> Void) -> Dance {
-        DanceFactory.instance.addCompletion(tag: dancingView.tag, completion: completion)
+        DanceFactory.instance.addCompletion(tag: self.tag, completion: completion)
         return dancingView.dance
     }
     
     /// Starts the animation for the view (must be called after declaring an animation block.)
     @discardableResult public func start() -> Dance {
-        DanceFactory.instance.startAnimation(tag: dancingView.tag)
+        DanceFactory.instance.startAnimation(tag: self.tag)
         return dancingView.dance
     }
     
@@ -391,13 +397,13 @@ public class Dance {
     ///
     /// - Parameter delay: The amount of time (measured in seconds) to wait before beginning the animations.
     @discardableResult public func start(after delay: TimeInterval) -> Dance {
-        DanceFactory.instance.startAnimation(tag: dancingView.tag, afterDelay: delay)
+        DanceFactory.instance.startAnimation(tag: self.tag, afterDelay: delay)
         return dancingView.dance
     }
     
     /// Pauses the view's animation. The view is not rendered in a paused state, so make sure to call .finish(at:) on the view in order to render it at a desired position.
     @discardableResult public func pause() -> Dance {
-        DanceFactory.instance.pauseAnimation(tag: dancingView.tag)
+        DanceFactory.instance.pauseAnimation(tag: self.tag)
         return dancingView.dance
     }
     
@@ -405,7 +411,7 @@ public class Dance {
     ///
     /// - Parameter delay: The amount of time (measured in seconds) to wait before pausing the animations.
     @discardableResult public func pause(after delay: TimeInterval) -> Dance {
-        DanceFactory.instance.pauseAnimation(tag: dancingView.tag, afterDelay: delay)
+        DanceFactory.instance.pauseAnimation(tag: self.tag, afterDelay: delay)
         return dancingView.dance
     }
     
@@ -413,15 +419,17 @@ public class Dance {
     ///
     /// - Parameter position: the position (current, start, end) to end the animation at. In other words, the position to render the view at after the animation.
     @discardableResult public func finish(at position: UIViewAnimatingPosition) -> Dance {
-        DanceFactory.instance.finishAnimation(tag: dancingView.tag, at: position)
+        DanceFactory.instance.finishAnimation(tag: self.tag, at: position)
         return dancingView.dance
     }
     
     /// Reverses the animation. Calling .reverse() on an already reversed view animation will make it animate in the initial direction.
     /// Alternative to setting the .isReversed variable.
     @discardableResult public func reverse() -> Dance {
-        let reversedState = DanceFactory.instance.getIsReversed(tag: dancingView.tag)
-        DanceFactory.instance.setIsReversed(tag: dancingView.tag, isReversed: !reversedState)
+        let reversedState = DanceFactory.instance.getIsReversed(tag: self.tag) // leave this here in order to print debug error
+        if self.hasAnimation {
+            DanceFactory.instance.setIsReversed(tag: self.tag, isReversed: !reversedState)
+        }
         return dancingView.dance
     }
     
@@ -431,41 +439,50 @@ public class Dance {
         progress = newProgress.convertToCGFloat()
         return dancingView.dance
     }
+    
 }
-
 
 
 // MARK: - UIView Extension for Dance
 
 @available(iOS 10.0, *)
 extension UIView {
+    
     public var dance: Dance {
         get {
             return DanceExtensionStoredPropertyHandler.associatedObject(base: self, key: &DanceExtensionStoredPropertyHandler.danceKey) {
-                return Dance(dancingView: self)
+                return Dance(dancingView: self) // initial value - is reference type so it won't change
             }
         }
         set {
             DanceExtensionStoredPropertyHandler.associateObject(base: self, key: &DanceExtensionStoredPropertyHandler.danceKey, value: newValue)
         }
     }
+    
 }
+
 
 // MARK: - Boilerplate code to store properties in Extensions using Associated Objects
 
-class DanceExtensionStoredPropertyHandler {
+fileprivate class DanceExtensionStoredPropertyHandler {
+    
     static var danceKey: UInt8 = 0
+    
     static func associatedObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initialiser: () -> ValueType) -> ValueType {
-        if let associated = objc_getAssociatedObject(base, key)
-            as? ValueType { return associated }
+        if let associated = objc_getAssociatedObject(base, key) as? ValueType {
+            return associated
+        }
         let associated = initialiser()
         objc_setAssociatedObject(base, key, associated, .OBJC_ASSOCIATION_RETAIN)
         return associated
     }
+    
     static func associateObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, value: ValueType) {
         objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN)
     }
+    
 }
+
 
 // MARK: - CGFloatConvertable Extension for Double, Float, CGFloat
 // (in order to accept non-CGFloats in setProgress(to:))
