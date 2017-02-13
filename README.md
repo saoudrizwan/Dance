@@ -135,7 +135,7 @@ circle.dance.animate(duration: 2.0, controlPoint1: controlPoint1, controlPoint2:
     $0.center = newCenter
 }
 ```
-<img src="https://cloud.githubusercontent.com/assets/7799382/22905635/e4242214-f1f5-11e6-9810-dd95d912156c.png" alt="bezier curve">
+<img src="https://cloud.githubusercontent.com/assets/7799382/22905836/b5d6875c-f1f6-11e6-9ad8-30373ce211e8.png" alt="bezier curve">
 ###### https://developer.apple.com/videos/play/wwdc2016/216/
 
 #### Sping-based Timing Information
