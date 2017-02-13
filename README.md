@@ -256,6 +256,9 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 circle.dance.pause().setProgress(to: 0.25)
 ```
 ```swift
+print(circle.dance.pause().progress)
+```
+```swift
 circle.dance.start().reverse()
 ```
 
