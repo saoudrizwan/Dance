@@ -79,7 +79,7 @@ And `import Dance` in the files you'd like to use it.
 
 ### Creating an Animation
 
-<a href="#animatable-properties">What properties can I animate?</a>
+[What properties can I animate?](#animatable-properties)
 
 #### UIKit timing curve
 * easeInOut (slow at beginning and end)
@@ -121,7 +121,7 @@ circle.dance.animate(duration: 10.0, controlPoint1: controlPoint1, controlPoint2
 
 #### Sping-based Timing Information
 ```swift
-circle.dance.animate(duration: 10.0, springiness: 0.5) {
+circle.dance.animate(duration: 10.0, dampingRatio: 0.5) {
     $0.center = newCenter
 }
 ```
