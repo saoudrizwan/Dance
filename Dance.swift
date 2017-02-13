@@ -436,9 +436,10 @@ public class Dance {
 
 
 // MARK: - UIView Extension for Dance
+
 @available(iOS 10.0, *)
 extension UIView {
-    var dance: Dance {
+    public var dance: Dance {
         get {
             return ExtensionStoredPropertyHandler.associatedObject(base: self, key: &ExtensionStoredPropertyHandler.danceKey) {
                 return Dance(dancingView: self)
@@ -450,9 +451,8 @@ extension UIView {
     }
 }
 
-// MARK: - Boilerplate code to store properties in Extensions
-// Credit: Tikitu de Jager
-// https://medium.com/@ttikitu/swift-extensions-can-add-stored-properties-92db66bce6cd#.5fzpv9dbd
+// MARK: - Boilerplate code to store properties in Extensions using Associated Objects
+
 class ExtensionStoredPropertyHandler {
     static var danceKey: UInt8 = 0
     static func associatedObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initialiser: () -> ValueType) -> ValueType {
@@ -469,20 +469,24 @@ class ExtensionStoredPropertyHandler {
 
 // MARK: - CGFloatConvertable Extension for Double, Float, CGFloat
 // (in order to accept non-CGFloats in setProgress(to:))
+
 public protocol CGFloatConvertable {
     func convertToCGFloat() -> CGFloat
 }
-extension Double : CGFloatConvertable {
+
+extension Double: CGFloatConvertable {
     public func convertToCGFloat() -> CGFloat {
         return CGFloat(self)
     }
 }
-extension Float : CGFloatConvertable {
+
+extension Float: CGFloatConvertable {
     public func convertToCGFloat() -> CGFloat {
         return CGFloat(self)
     }
 }
-extension CGFloat : CGFloatConvertable {
+
+extension CGFloat: CGFloatConvertable {
     public func convertToCGFloat() -> CGFloat {
         return self
     }
