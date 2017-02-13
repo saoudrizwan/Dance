@@ -152,6 +152,22 @@ circle.dance.start()
 circle.dance.start(after: 5.0) // for a delay (in seconds) before starting the animation
 ```
 
+### Adding Completion Blocks
+Add as many completion blocks as you need, wherever you need to. When an animation finishes, either by playing out the set animation or by calling `.finish(at:)`, then all completion blocks are triggered.
+```swift
+circle.dance.addCompletion { (position) in
+    switch position {
+    case .start:
+        print("Finished the animation at the start position.")
+    case .current:
+        print("Finished the animation at the current position.")
+    case .end:
+        print("Finished the animation at the end position.")
+    }
+}
+```
+**Note:** you can't add a completion block to a finished animation.
+
 ### Pausing an Animation
 ```swift
 circle.dance.pause()
@@ -187,22 +203,6 @@ Animations will automatically finish when they complete and reach their target v
 ```swift
 circle.dance.finish(at: .current) // or .start, .end
 ```
-
-### Adding Completion Blocks
-Add as many completion blocks as you need, wherever you need to. When an animation finishes, either by playing out the set animation or by calling `.finish(at:)`, then all completion blocks are triggered.
-```swift
-circle.dance.addCompletion { (position) in
-    switch position {
-    case .start:
-        print("Finished the animation at the start position.")
-    case .current:
-        print("Finished the animation at the current position.")
-    case .end:
-        print("Finished the animation at the end position.")
-    }
-}
-```
-**Note:** you can't add a completion block to a finished animation.
 
 ### Dance Properties 
 ```swift
