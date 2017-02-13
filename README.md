@@ -270,4 +270,4 @@ Contact me by <a href="mailto:hello@saoudmr.com">email</a> or <a href="https://t
 
 ## Credit
 
-Disco Logo by [Effach from the Noun Project](https://thenounproject.com/francois.hardy.359/)
+Disco Ball Icon by [Effach from the Noun Project](https://thenounproject.com/francois.hardy.359/)
