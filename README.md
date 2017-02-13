@@ -83,10 +83,14 @@ And `import Dance` in the files you'd like to use it.
 **Note:** throughout this document, `circle` will act as the view being animated. You can use Dance on any instance of a `UIView` or `UIView` subclass, such as `UILabel`, `UITextField`, `UIButton`, etc.
 
 **Using Dance is easy.**
-1. <a href="#creating-animation">Create an animation</a> for a view, and optionally <a href="#completion-animation">add completion blocks</a>.
-2. <a href="#starting-animation">Start</a> the animation.
-3. <a href="#pausing-animation">Pause</a>, <a href="#reversing-animation">reverse</a>, or <a href="#scrubbing-animation">scrub through</a> the animation.
-4. <a href="#finishing-animation">Finish</a> the animation, triggering any completion blocks.
+1. [Create an animation](#creating-animation) for a view, and optionally [add completion blocks](#completion-animation).
+
+2. [Start](#starting-animation) the animation.
+
+3. [Pause](#pausing-animation), [reverse](#reversing-animation), or [scrub through](#scrubbing-animation) the animation.
+
+4. [Finish](#finishing-animation) the animation, triggering any completion blocks.
+
 
 <p id="#creating-animation"></p>
 ### Creating an Animation
