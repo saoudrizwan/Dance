@@ -1,25 +1,26 @@
 <p align="center">
-    <img src="https://cloud.githubusercontent.com/assets/7799382/22870997/ce90f9d4-f161-11e6-88c4-9573cf109383.png" alt="Dance" />
+    <img src="https://cloud.githubusercontent.com/assets/7799382/22872668/d4b7831a-f16f-11e6-9fe9-204390496073.png" alt="Dance" />
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/platform-iOS%2010%2B-blue.svg" alt="Platform: iOS 10+" />
+    <img src="https://img.shields.io/badge/Platform-iOS%2010%2B-blue.svg" alt="Platform: iOS 10+" />
     <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/Language-Swift%203-orange.svg" alt="Language: Swift 3" /></a>
-    <a href="https://cocoapods.org/pods/Dance"><img src="https://img.shields.io/badge/pod-v1.0-red.svg" alt="CocoaPods compatible" /></a>
-    <img src="https://img.shields.io/badge/license-MIT-lightgrey.svg" alt="License: MIT" />
+    <a href="https://cocoapods.org/pods/Dance"><img src="https://img.shields.io/badge/Pod-v1.0-red.svg" alt="CocoaPods compatible" /></a>
+    <img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License: MIT" />
 </p>
 
 <p align="center">
     <a href="#installation">Installation</a>
   • <a href="#usage">Usage</a>
+  • <a href="#what">Constraints</a>
   • <a href="#function">Chaining</a>
   • <a href="#animatable">Animatable Properties</a>
   • <a href="https://github.com/saoudrizwan/Dance/issues">Issues</a>
   • <a href="#license">License</a>
 </p>
-
+<p>
 Dance is a lightweight and straightforward animations framework built upon the new UIViewPropertyAnimator class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate{ … }` and can be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially forgiving, and provides the power that UIViewPropertyAnimator brings to iOS while at the same time maintaining ease of use.
----
+</p>
 ## Quick Start
 ```swift
 import Dance
@@ -54,11 +55,12 @@ With Dance, you can create referenceable animations attached to views. That mean
 * `.reverse()`
 * `.progress = 0.85`
 * `.finish(at: .end)`
+
 anywhere the view can be referenced.
 
 ## Compatibility
 
-Dance requires iOS 10+ and is compatible with **Swift 3** projects.
+Dance requires **iOS 10+** and is compatible with **Swift 3** projects.
 
 ## Installation
 
@@ -69,17 +71,17 @@ use_frameworks!
 
 pod 'Dance'
 ```
-* Or drag and drop 'Dance.swift' into your project.
+* Or drag and drop `Dance.swift` into your project.
 
 And `import Dance` in the files you'd like to use it.
----
+
 ## Usage
 
-*I recommend looking through the example project, it has detailed documentation of everything Dance has to offer*
-
-<a href="#animatable">What properties can I animate?</a>
+*I recommend looking through the example project, it has detailed documentation of everything Dance has to offer.*
 
 ### Creating an Animation
+
+<a href="#animatable">What properties can I animate?</a>
 
 #### UIKit timing curve
 * easeInOut (slow at beginning and end)
@@ -124,19 +126,6 @@ circle.dance.animate(duration: 10.0, springiness: 0.5) {
     $0.center = self.endPosition
 }
 ```
-
-### What About Constraints?
-
-Dance works great with constraints, to animate constraint changes:
-
-```swift
-// update constraints for circle and/or its subviews first
-// ...
-circle.dance.animate(duration: 2.0, curve: .easeInOut) {
-    $0.layoutIfNeeded()
-}
-```
-> Usually most developers would call self.view.layoutIfNeeded() in a standard `UIView.animate()` block. However this is bad practice as it lays out all subviews in the current view, when they may only want to animate constraint changes for certain views. With Dance, calling `$0.layoutIfNeeded() only lays out the view that's being animated and its subviews, ensuring low energy impact and high FPS.
 
 ### Starting an Animation
 After creating an animation block using `.animate`, the animation doesn't start until you call `.start()`.
@@ -199,7 +188,20 @@ circle.dance.isRunning: Bool
 circle.dance.isReversed: Bool
 ```
 
-##Function Chaining
+## What About Constraints?
+
+Dance works great with constraints, to animate constraint changes:
+
+```swift
+// update constraints for circle and/or its subviews first
+// ...
+circle.dance.animate(duration: 2.0, curve: .easeInOut) {
+    $0.layoutIfNeeded()
+}
+```
+> Usually most developers would call `self.view.layoutIfNeeded()` in a standard `UIView.animate()` block. However this is bad practice as it lays out all subviews in the current view, when they may only want to animate constraint changes for certain views. With Dance, calling `$0.layoutIfNeeded()` only lays out the view that's being animated and its subviews, ensuring low energy impact and high FPS.
+
+## Function Chaining
 Dance allows you to chain multiple animation commands together, resulting in an elegant and easy-to-read syntax.
 Examples:
 ```swift
@@ -219,8 +221,8 @@ circle.dance.pause().setProgress(to: 0.9)
 ```swift
 circle.dance.start().reverse()
 ```
----
-##Animatable Properties
+
+## Animatable Properties
 
 | Property      | Changes you can make                                       |
 | ------------- |------------------------------------------------------------|
@@ -233,11 +235,11 @@ circle.dance.start().reverse()
 | [contentStretch](https://developer.apple.com/reference/uikit/uiview/1622511-contentstretch)   | Modify this property to change the way the view’s contents are stretched to fill the available space. |
 
 Source: https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html
----
+
 ## License
 
 Dance uses the MIT license. Please file an issue if you have any questions or if you'd like to share how you're using this tool.
----
+
 ## Credits
 
 Disco Logo by [Effach from the Noun Project](https://thenounproject.com/francois.hardy.359/)
