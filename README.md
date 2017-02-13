@@ -173,10 +173,10 @@ circle.dance.isReversed = true
 **Note:** the position value in the completion block will stay the same after calling `.reverse()`. For example, if a view's animation is reversed and the view ends up in its initial position, then the completion closure's position parameter will be `.start`, not `.end`.
 
 
-### Scrubbing through an Animation
+### Scrubbing Through an Animation
 Dance animations are like movies—you can scrub through them using the `.progress` property. 
 ```swift
-circle.dance.setProgress(to: 0.5) // takes value between 0 and 1
+circle.dance.setProgress(to: 0.5) // takes value 0-1
 ```
 ```swift
 circle.dance.progress = 0.5
@@ -205,19 +205,19 @@ circle.dance.addCompletion { (position) in
 
 ### Dance Properties 
 ```swift
-circle.dance.hasAnimation: Bool
+circle.dance.hasAnimation: Bool { get }
 ```
 ```swift
-circle.dance.progress: CGFloat
+circle.dance.progress: CGFloat { get, set }
 ```
 ```swift
-circle.dance.state: UIViewAnimatingState // .inactive, .active, .stopped
+circle.dance.state: UIViewAnimatingState { get } // .inactive, .active, .stopped
 ```
 ```swift
-circle.dance.isRunning: Bool
+circle.dance.isRunning: Bool { get }
 ```
 ```swift
-circle.dance.isReversed: Bool
+circle.dance.isReversed: Bool { get, set }
 ```
 
 ### What About Constraints?
@@ -236,6 +236,7 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 ### Function Chaining
 
 Dance allows you to chain multiple animation commands together, resulting in an elegant and easy-to-read syntax.
+For example:
 ```swift
 circle.dance.animate(duration: 2.0, curve: .easeInOut) {
     $0.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
