@@ -238,8 +238,8 @@ circle.dance.start().reverse()
 <p id="#animatable-properties"></p>
 ## Animatable Properties
 
-| Property      | Changes you can make                                       |
-| ------------- |------------------------------------------------------------|
+| UIView Property      | Changes you can make                                       |
+| -------------------- |------------------------------------------------------------|
 | [frame](https://developer.apple.com/reference/uikit/uiview/1622621-frame)                    | Modify this property to change the view’s size and position relative to its superview’s coordinate system. (If the `transform` property does not contain the identity transform, modify the `bounds` or `center` properties instead.)                                 |
 | [bounds](https://developer.apple.com/reference/uikit/uiview/1622580-bounds)                   | Modify this property to change the view’s size.      |
 | [center](https://developer.apple.com/reference/uikit/uiview/1622627-center)                   | Modify this property to change the view’s position relative to its superview’s coordinate system.     |
