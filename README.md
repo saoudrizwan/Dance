@@ -16,7 +16,7 @@
   • <a href="#license">License</a>
 </p>
 
-Dance is a **lightweight** and **straightforward** animation framework built upon the new <a href="https://developer.apple.com/reference/uikit/uiviewpropertyanimator" target="_blank">`UIViewPropertyAnimator`</a> class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { ... }` which can then be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially **forgiving**, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
+Dance is a **powerful** and **straightforward** animation framework built upon the new <a href="https://developer.apple.com/reference/uikit/uiviewpropertyanimator" target="_blank">`UIViewPropertyAnimator`</a> class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { ... }` which can then be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially **forgiving**, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
 
 ## Quick Start
 ```swift
@@ -50,7 +50,7 @@ With Dance, you can create referenceable animations attached to views. That mean
 * `.pause()`
 * `.start()`
 * `.reverse()`
-* `.progress = 0.85`
+* `.setProgress(to: 0.75)`
 * `.finish(at: .end)`
 
 anywhere the view can be referenced.
