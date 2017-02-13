@@ -252,6 +252,10 @@ circle.dance.start().reverse()
 
 <a href="https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html" target="_blank">https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</a>
 
+## Documentation
+Option + click on any of Dance's methods for detailed documentation.
+<img src="https://cloud.githubusercontent.com/assets/7799382/22877101/ae6ae940-f188-11e6-8f60-7c69b94ade33.png" alt="documentation">
+
 ## License
 
 Dance uses the MIT license. Please file an issue if you have any questions or if you'd like to share how you're using this tool.
