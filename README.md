@@ -61,7 +61,7 @@ Dance requires **iOS 10+** and is compatible with **Swift 3** projects.
 
 ## Installation
 
-* Installation for <a href="https://cocoapods.org" target="_blank">CocoaPods</a>:
+* Installation for <a href="https://guides.cocoapods.org/using/using-cocoapods.html" target="_blank">CocoaPods</a>:
 
 ```ruby
 platform :ios, '10.0'
