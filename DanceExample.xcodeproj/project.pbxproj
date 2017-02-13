@@ -13,6 +13,7 @@
 		1019DBF31E51060F00C7D6F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1019DBF21E51060F00C7D6F1 /* Assets.xcassets */; };
 		1019DBF61E51060F00C7D6F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1019DBF41E51060F00C7D6F1 /* LaunchScreen.storyboard */; };
 		1019DBFE1E51063D00C7D6F1 /* Dance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1019DBFD1E51063D00C7D6F1 /* Dance.swift */; };
+		1045F3801E5169A20021062D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1045F37F1E5169A20021062D /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		1019DBF51E51060F00C7D6F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1019DBF71E51060F00C7D6F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1019DBFD1E51063D00C7D6F1 /* Dance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dance.swift; sourceTree = "<group>"; };
+		1045F37F1E5169A20021062D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 		1019DBDF1E51060F00C7D6F1 = {
 			isa = PBXGroup;
 			children = (
+				1045F37F1E5169A20021062D /* LICENSE */,
 				1019DBFF1E51064E00C7D6F1 /* Dance */,
 				1019DBEA1E51060F00C7D6F1 /* DanceExample */,
 				1019DBE91E51060F00C7D6F1 /* Products */,
@@ -144,6 +147,7 @@
 			files = (
 				1019DBF61E51060F00C7D6F1 /* LaunchScreen.storyboard in Resources */,
 				1019DBF31E51060F00C7D6F1 /* Assets.xcassets in Resources */,
+				1045F3801E5169A20021062D /* LICENSE in Resources */,
 				1019DBF11E51060F00C7D6F1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +323,7 @@
 				1019DBFC1E51060F00C7D6F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
