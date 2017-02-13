@@ -12,7 +12,7 @@
 <p align="center">
     <a href="#installation">Installation</a>
   • <a href="#usage">Usage</a>
-  • <a href="#animatable">Animatable Properties</a>
+  • <a href="#animatable-properties">Animatable Properties</a>
   • <a href="#license">License</a>
 </p>
 
@@ -78,7 +78,7 @@ And `import Dance` in the files you'd like to use it.
 
 ### Creating an Animation
 
-<a href="#Animatable">What properties can I animate?</a>
+<a href="#animatable-properties">What properties can I animate?</a>
 
 #### UIKit timing curve
 * easeInOut (slow at beginning and end)
@@ -200,6 +200,7 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 > Usually most developers would call `self.view.layoutIfNeeded()` in a standard `UIView.animate()` block. However this is bad practice as it lays out all subviews in the current view, when they may only want to animate constraint changes for certain views. With Dance, calling `$0.layoutIfNeeded()` only lays out the view that's being animated and its subviews, ensuring low energy impact and high FPS.
 
 ### Function Chaining
+
 Dance allows you to chain multiple animation commands together, resulting in an elegant and easy-to-read syntax.
 Examples:
 ```swift
@@ -219,7 +220,7 @@ circle.dance.pause().setProgress(to: 0.9)
 ```swift
 circle.dance.start().reverse()
 ```
-
+<p id="#animatable-properties"></p>
 ## Animatable Properties
 
 | Property      | Changes you can make                                       |
