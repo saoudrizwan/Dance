@@ -202,6 +202,7 @@ circle.dance.addCompletion { (position) in
     }
 }
 ```
+**Note:** you can't add a completion block to a finished animation.
 
 ### Dance Properties 
 ```swift
