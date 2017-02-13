@@ -12,8 +12,6 @@
 <p align="center">
     <a href="#installation">Installation</a>
   • <a href="#usage">Usage</a>
-  • <a href="#what">Constraints</a>
-  • <a href="#function">Chaining</a>
   • <a href="#animatable">Animatable Properties</a>
   • <a href="#license">License</a>
 </p>
@@ -80,7 +78,7 @@ And `import Dance` in the files you'd like to use it.
 
 ### Creating an Animation
 
-<a href="#animatable">What properties can I animate?</a>
+<a href="#Animatable">What properties can I animate?</a>
 
 #### UIKit timing curve
 * easeInOut (slow at beginning and end)
@@ -112,10 +110,11 @@ circle.dance.animate(duration: 10.0, timingParameters: timingParameters) {
 
 #### [Custom Cubic Bézier Timing Curve](https://developer.apple.com/reference/uikit/uiviewpropertyanimator/1648368-init)
 ```swift
-let timingParameters = UISpringTimingParameters(mass: 1.0, stiffness: 0.2, damping: 0.5, initialVelocity: CGVector(dx: 0, dy: 0))
-
-circle.dance.animate(duration: 10.0, timingParameters: timingParameters) {
-    $0.center = newCenter
+let controlPoint1 = CGPoint(x: 0, y: 1)
+let controlPoint2 = CGPoint(x: 1, y: 0)
+        
+circle.dance.animate(duration: 10.0, controlPoint1: controlPoint1, controlPoint2: controlPoint2) {
+    $0.center = self.endPosition
 }
 ```
 
@@ -156,7 +155,7 @@ circle.dance.isReversed = true
 **Note:** the position value in the completion block will stay the same after calling `.reverse()`. For example, if a view's animation is reversed and the view ends up in its initial position, then the position parameter will be `.start`, not `.end`.
 
 ### Scrubbing through an Animation
-Dance animations are like movies—you can scrub through them using its `.progress` property. 
+Dance animations are like movies—you can scrub through them using the `.progress` property. 
 ```swift
 circle.dance.setProgress(to: 0.5) // takes value between 0 and 1
 ```
@@ -165,7 +164,7 @@ circle.dance.progress = 0.5
 ```
 
 ### Finishing an Animation
-Animations will automatically finish when they complete and reach their target values. However if you pause an animation and want to render it, or if you want to finish an animation early, you must call `.finish(at:)`.
+Animations will automatically finish when they complete and reach their target values, triggering any completion blocks. However if you pause an animation and/or want to finish an animation early, you must call `.finish(at:)`.
 ```swift
 circle.dance.finish(at: .current) // or .start, .end
 ```
@@ -187,7 +186,7 @@ circle.dance.isRunning: Bool
 circle.dance.isReversed: Bool
 ```
 
-## What About Constraints?
+### What About Constraints?
 
 Dance works great with constraints, to animate constraint changes:
 
@@ -200,7 +199,7 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 ```
 > Usually most developers would call `self.view.layoutIfNeeded()` in a standard `UIView.animate()` block. However this is bad practice as it lays out all subviews in the current view, when they may only want to animate constraint changes for certain views. With Dance, calling `$0.layoutIfNeeded()` only lays out the view that's being animated and its subviews, ensuring low energy impact and high FPS.
 
-## Function Chaining
+### Function Chaining
 Dance allows you to chain multiple animation commands together, resulting in an elegant and easy-to-read syntax.
 Examples:
 ```swift
