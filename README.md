@@ -75,7 +75,7 @@ And `import Dance` in the files you'd like to use it.
 
 ## Usage
 
-*I recommend looking through the example project—it has detailed documentation of everything Dance has to offer.*
+*It's recommended to look through the example project—it has detailed documentation of everything Dance has to offer.*
 
 ### Creating an Animation
 
@@ -127,7 +127,7 @@ circle.dance.animate(duration: 10.0, dampingRatio: 0.5) {
 ```
 
 ### Starting an Animation
-After creating an animation block using `.animate { }`, the animation doesn't start until you call `.start()`.
+After creating an animation block using `.animate { ... }`, the animation doesn't start until you call `.start()`.
 ```swift
 circle.dance.start()
 ```
@@ -142,7 +142,7 @@ circle.dance.pause()
 ```swift
 circle.dance.pause(after: 5.0) // for a delay (in seconds) before pausing the animation
 ```
-**Note:** this won't render the view at the paused position, you must call [`.finish(at: .current)`](#finishing-animation) to do that.
+**Note:** this won't render the view at the paused position, you must call <a href="#finishing-animation">`.finish(at:)`</a> to do that.
 
 ### Reversing an Animation
 Calling this method will reverse the animation in its tracks, like playing a video backwards.
@@ -202,7 +202,6 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 ### Function Chaining
 
 Dance allows you to chain multiple animation commands together, resulting in an elegant and easy-to-read syntax.
-Examples:
 ```swift
 circle.dance.animate(duration: 2.0, curve: .easeInOut) {
     $0.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
@@ -225,13 +224,13 @@ circle.dance.start().reverse()
 
 | Property      | Changes you can make                                       |
 | ------------- |------------------------------------------------------------|
-| [frame](https://developer.apple.com/reference/uikit/uiview/1622621-frame)                     | Modify this property to change the view’s size and position relative to its superview’s coordinate system. (If the `transform` property does not contain the identity transform, modify the `bounds` or `center` properties instead.)                                 |
-| [bounds](https://developer.apple.com/reference/uikit/uiview/1622580-bounds)                   | Modify this property to change the view’s size.      |
-| [center](https://developer.apple.com/reference/uikit/uiview/1622627-center)                   | Modify this property to change the view’s position relative to its superview’s coordinate system.     |
-| [transform](https://developer.apple.com/reference/uikit/uiview/1622459-transform)             | Modify this property to scale, rotate, or translate the view relative to its center point. Transformations using this property are always performed in 2D space. (To perform 3D transformations, you must animate the view’s layer object using Core Animation.)      |
-| [alpha](https://developer.apple.com/reference/uikit/uiview/1622417-alpha)                     | Modify this property to gradually change the transparency of the view.      |
-| [backgroundColor](https://developer.apple.com/reference/uikit/uiview/1622591-backgroundcolor) | Modify this property to change the view’s background color. |
-| [contentStretch](https://developer.apple.com/reference/uikit/uiview/1622511-contentstretch)   | Modify this property to change the way the view’s contents are stretched to fill the available space. |
+| [frame](https://developer.apple.com/reference/uikit/uiview/1622621-frame){:target="_blank"}                     | Modify this property to change the view’s size and position relative to its superview’s coordinate system. (If the `transform` property does not contain the identity transform, modify the `bounds` or `center` properties instead.)                                 |
+| [bounds](https://developer.apple.com/reference/uikit/uiview/1622580-bounds){:target="_blank"}                   | Modify this property to change the view’s size.      |
+| [center](https://developer.apple.com/reference/uikit/uiview/1622627-center){:target="_blank"}                   | Modify this property to change the view’s position relative to its superview’s coordinate system.     |
+| [transform](https://developer.apple.com/reference/uikit/uiview/1622459-transform){:target="_blank"}             | Modify this property to scale, rotate, or translate the view relative to its center point. Transformations using this property are always performed in 2D space. (To perform 3D transformations, you must animate the view’s layer object using Core Animation.)      |
+| [alpha](https://developer.apple.com/reference/uikit/uiview/1622417-alpha){:target="_blank"}                     | Modify this property to gradually change the transparency of the view.      |
+| [backgroundColor](https://developer.apple.com/reference/uikit/uiview/1622591-backgroundcolor){:target="_blank"} | Modify this property to change the view’s background color. |
+| [contentStretch](https://developer.apple.com/reference/uikit/uiview/1622511-contentstretch){:target="_blank"}   | Modify this property to change the way the view’s contents are stretched to fill the available space. |
 
 <a href="https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html" target="_blank">https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</a>
 
