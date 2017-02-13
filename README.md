@@ -276,7 +276,7 @@ Option + click on any of Dance's methods for detailed documentation.
 
 ## License
 
-Dance uses the MIT license. Please file an issue if you have any questions or if you'd like to share how you're using this tool.
+Dance uses the MIT license. Please file an issue if you have any questions or if you'd like to share how you're using Dance.
 
 ## Contribute
 
