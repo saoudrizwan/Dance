@@ -284,6 +284,6 @@ Dance is in its infancy, but v1.0 provides the barebones of a revolutionary new 
 
 Contact me by <a href="mailto:hello@saoudmr.com">email</a> or <a href="https://twitter.com/sdrzn" target="_blank">twitter</a>. Please create an <a href="https://github.com/saoudrizwan/Dance/issues">issue</a> if you come across a bug or would like a feature to be added.
 
-## Credit
+## Credits
 
 Disco Ball Icon by [Effach from the Noun Project](https://thenounproject.com/francois.hardy.359/)
