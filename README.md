@@ -16,7 +16,7 @@
   • <a href="#license">License</a>
 </p>
 
-Dance is a **lightweight** and **straightforward** animation framework built upon the new <a href="https://developer.apple.com/reference/uikit/uiviewpropertyanimator" target="_blank">`UIViewPropertyAnimator`</a> class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { ... }` and can be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially **forgiving**, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
+Dance is a **lightweight** and **straightforward** animation framework built upon the new <a href="https://developer.apple.com/reference/uikit/uiviewpropertyanimator" target="_blank">`UIViewPropertyAnimator`</a> class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { ... }` which can then be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially **forgiving**, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
 
 ## Quick Start
 ```swift
@@ -33,10 +33,9 @@ class MyViewController: UIViewController {
             $0.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             $0.center = self.view.center
             $0.backgroundColor = .blue
-        }.addCompletion { (position) in
-            if position == .end {
-                print("Animation reached the target end position!")
-            }
+        }.addCompletion { (_) in
+            print("Animation completed!")
+            self.view.backgroundColor = .green
         }.start(after: 5.0)
     }
     
@@ -76,6 +75,8 @@ And `import Dance` in the files you'd like to use it.
 ## Usage
 
 *It's recommended to look through the example project—it has detailed documentation of everything Dance has to offer.*
+
+**Note:** throughout this document, `circle` will act as the view being animated. You can use Dance on any `UIView` subclass, such as `UILabel`, `UITextField`, `UIButton`, etc.
 
 ### Creating an Animation
 
@@ -167,6 +168,21 @@ circle.dance.progress = 0.5
 Animations will automatically finish when they complete and reach their target values, triggering any completion blocks. However if you pause an animation and/or want to finish that animation early, you must call `.finish(at:)`.
 ```swift
 circle.dance.finish(at: .current) // or .start, .end
+```
+
+### Adding Completion Blocks
+Add as many completion blocks as you need, wherever you need to. When an animation finishes, either by playing out the set animation or by calling `.finish(at:)`, then all completion blocks are triggered.
+```swift
+circle.dance.addCompletion { (position) in
+    switch position {
+    case .start:
+        print("Finished the animation at the start position.")
+    case .current:
+        print("Finished the animation at the current position.")
+    case .end:
+        print("Finished the animation at the end position.")
+    }
+}
 ```
 
 ### Dance Properties 
