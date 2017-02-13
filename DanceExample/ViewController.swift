@@ -106,14 +106,14 @@ class ViewController: UIViewController {
          You can even animate constraint changes easily with Dance:
          
          Recommended reading:
-         Animating Constraints
-         http://stackoverflow.com/a/27372232/3502608
+            * Animating Constraints
+              http://stackoverflow.com/a/27372232/3502608
          
-         What is .layoutIfNeeded()
-         http://stackoverflow.com/a/29151376/3502608
+            * What is .layoutIfNeeded()
+              http://stackoverflow.com/a/29151376/3502608
          
-         Animating Constraints Using iOS 10’s New UIViewPropertyAnimator
-         https://medium.com/@sdrzn/animating-constraints-using-ios-10s-new-uiviewpropertyanimator-944bbb42347b#.du139c6c7
+            * Animating Constraints Using iOS 10’s New UIViewPropertyAnimator
+              https://medium.com/@sdrzn/animating-constraints-using-ios-10s-new-uiviewpropertyanimator-944bbb42347b#.du139c6c7
          
          TL;DR: you can call .layoutIfNeeded() on a view to layout it and its subviews. This means that you're updating its constraints and its subviews' constraints, and putting .layoutIfNeeded() in a Dance animation block (or any UIKit animation block) will animate the constraint changes.
          */
@@ -149,7 +149,7 @@ class ViewController: UIViewController {
          
          circle.dance.animate(duration: 2.0, curve: .easeIn) {
              $0.center = newCenter // $0 is circle
-             self.triangle.center = newCenter // triangle is a view completely unassociated with circle, but Dance will make it a part of circle's animation block. So whenever you pause circle's dance animation, then the triangle gets paused as well.
+             self.triangle.center = newCenter // triangle is a view completely unassociated with circle, but Dance will make it a part of circle's animation block. So whenever you pause circle's dance animation, then the triangle gets paused as well. But you can't access that animation using triangle.dance, since the animation is associated with circle.
          }
          */
     }
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
         // in case you tap 'circle.dance.start()' after the animation declared in viewDidLoad has already finished
         if !circle.dance.hasAnimation { resetCircleAnimation() }
         
-        // start any animation associated with circle
+        // start the animation associated with circle
         circle.dance.start()
         
         // or circle.dance.start(after: 5.0) for a delay before we start the animation
@@ -188,7 +188,7 @@ class ViewController: UIViewController {
     
     @IBAction func pauseTapped(_ sender: Any) {
         /*
-         Note: .pause() doesn't render the view at it's current position, you need to call .finish() in order to render the view and its subviews at the desired finished position (start, current, or end)
+         Note: .pause() doesn't render the view at it's current position, you need to call .finish() in order to render the view and its subviews at the desired finishing position (.start, .current, or .end)
          */
         
         circle.dance.pause()
@@ -232,15 +232,15 @@ class ViewController: UIViewController {
         circle.center = startPosition
         circle.dance.animate(duration: 10.0, curve: .linear) {
             $0.center = self.endPosition
-            }.addCompletion { (position) in
-                switch position {
-                case .start:
-                    print("Finished the animation at the start position.")
-                case .current:
-                    print("Finished the animation at the current position.")
-                case .end:
-                    print("Finished the animation at the end position.")
-                }
+        }.addCompletion { (position) in
+            switch position {
+            case .start:
+                print("Finished the animation at the start position.")
+            case .current:
+                print("Finished the animation at the current position.")
+            case .end:
+                print("Finished the animation at the end position.")
+            }
         }
     }
     
