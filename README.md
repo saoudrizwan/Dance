@@ -159,7 +159,7 @@ circle.dance.pause()
 ```swift
 circle.dance.pause(after: 5.0) // for a delay (in seconds) before pausing the animation
 ```
-**Note:** this won't render the view at the paused position, you must call <a href="#finishing-animation">`.finish(at:)`</a> to do that.
+**Note:** this won't render the view at the paused position, you must call <a href="#finishing-an-animation">`.finish(at:)`</a> to do that.
 
 
 ### Reversing an Animation
