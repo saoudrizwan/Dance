@@ -82,6 +82,13 @@ And `import Dance` in the files you'd like to use it.
 
 **Note:** throughout this document, `circle` will act as the view being animated. You can use Dance on any instance of a `UIView` or `UIView` subclass, such as `UILabel`, `UITextField`, `UIButton`, etc.
 
+**Using Dance is easy.**
+1. <a href="#creating-animation">Create an animation</a> for a view, and optionally <a href="#completion-animation">add completion blocks</a>.
+2. <a href="#starting-animation">Start</a> the animation.
+3. <a href="#pausing-animation">Pause</a>, <a href="#reversing-animation">reverse</a>, or <a href="#scrubbing-animation">scrub through</a> the animation.
+4. <a href="#finishing-animation">Finish</a> the animation, triggering any completion blocks.
+
+<p id="#creating-animation"></p>
 ### Creating an Animation
 
 [What properties can I animate?](#animatable-properties)
@@ -130,7 +137,7 @@ circle.dance.animate(duration: 2.0, dampingRatio: 0.5) {
     $0.center = newCenter
 }
 ```
-
+<p id="#starting-animation"></p>
 ### Starting an Animation
 After creating an animation block using `.animate { ... }`, the animation doesn't start until you call `.start()`.
 ```swift
@@ -139,7 +146,7 @@ circle.dance.start()
 ```swift
 circle.dance.start(after: 5.0) // for a delay (in seconds) before starting the animation
 ```
-
+<p id="#pausing-animation"></p>
 ### Pausing an Animation
 ```swift
 circle.dance.pause()
@@ -149,6 +156,7 @@ circle.dance.pause(after: 5.0) // for a delay (in seconds) before pausing the an
 ```
 **Note:** this won't render the view at the paused position, you must call <a href="#finishing-animation">`.finish(at:)`</a> to do that.
 
+<p id="#reversing-animation"></p>
 ### Reversing an Animation
 Calling this method will reverse the animation in its tracks, like playing a video backwards.
 ```swift
@@ -159,6 +167,7 @@ circle.dance.isReversed = true
 ```
 **Note:** the position value in the completion block will stay the same after calling `.reverse()`. For example, if a view's animation is reversed and the view ends up in its initial position, then the completion closure's position parameter will be `.start`, not `.end`.
 
+<p id="#scrubbing-animation"></p>
 ### Scrubbing through an Animation
 Dance animations are like movies—you can scrub through them using the `.progress` property. 
 ```swift
@@ -173,7 +182,7 @@ Animations will automatically finish when they complete and reach their target v
 ```swift
 circle.dance.finish(at: .current) // or .start, .end
 ```
-
+<p id="#completion-animation"></p>
 ### Adding Completion Blocks
 Add as many completion blocks as you need, wherever you need to. When an animation finishes, either by playing out the set animation or by calling `.finish(at:)`, then all completion blocks are triggered.
 ```swift
