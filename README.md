@@ -4,8 +4,8 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/Platform-iOS%2010%2B-blue.svg" alt="Platform: iOS 10+" />
-    <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/Language-Swift%203-orange.svg" alt="Language: Swift 3" /></a>
-    <a href="https://cocoapods.org/pods/Dance"><img src="https://img.shields.io/badge/CocoaPods-v1.0-red.svg" alt="CocoaPods compatible" /></a>
+    <a href="https://developer.apple.com/swift" target="_blank"><img src="https://img.shields.io/badge/Language-Swift%203-orange.svg" alt="Language: Swift 3" /></a>
+    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://img.shields.io/badge/CocoaPods-v1.0-red.svg" alt="CocoaPods compatible" /></a>
     <img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License: MIT" />
 </p>
 
@@ -16,7 +16,7 @@
   • <a href="#license">License</a>
 </p>
 
-Dance is a **lightweight** and **straightforward** animation framework built upon the new [`UIViewPropertyAnimator`](https://developer.apple.com/reference/uikit/uiviewpropertyanimator) class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { ... }` and can be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially **forgiving**, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
+Dance is a **lightweight** and **straightforward** animation framework built upon the new <a href="https://developer.apple.com/reference/uikit/uiviewpropertyanimator" target="_blank">`UIViewPropertyAnimator`</a> class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { ... }` and can be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially **forgiving**, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
 
 ## Quick Start
 ```swift
@@ -62,7 +62,7 @@ Dance requires **iOS 10+** and is compatible with **Swift 3** projects.
 
 ## Installation
 
-* Installation for [CocoaPods](https://cocoapods.org):
+* Installation for <a href="https://cocoapods.org" target="_blank">CocoaPods</a>:
 
 ```ruby
 use_frameworks!
@@ -100,7 +100,7 @@ circle.dance.animate(duration: 2.0, curve: .easeInOut) {
 }
 ```
 
-#### [UITimingCurveProvider](https://developer.apple.com/reference/uikit/uitimingcurveprovider)
+#### <a href="https://developer.apple.com/reference/uikit/uitimingcurveprovider" target="_blank">UITimingCurveProvider</a>
 ```swift
 let timingParameters = UISpringTimingParameters(mass: 1.0, stiffness: 0.2, damping: 0.5, initialVelocity: CGVector(dx: 0, dy: 0))
 
@@ -109,7 +109,7 @@ circle.dance.animate(duration: 10.0, timingParameters: timingParameters) {
 }
 ```
 
-#### [Custom Cubic Bézier Timing Curve](https://developer.apple.com/reference/uikit/uiviewpropertyanimator/1648368-init)
+#### <a href="https://developer.apple.com/reference/uikit/uiviewpropertyanimator/1648368-init" target="_blank">Custom Cubic Bézier Timing Curve</a>
 ```swift
 let controlPoint1 = CGPoint(x: 0, y: 1)
 let controlPoint2 = CGPoint(x: 1, y: 0)
@@ -233,7 +233,7 @@ circle.dance.start().reverse()
 | [backgroundColor](https://developer.apple.com/reference/uikit/uiview/1622591-backgroundcolor) | Modify this property to change the view’s background color. |
 | [contentStretch](https://developer.apple.com/reference/uikit/uiview/1622511-contentstretch)   | Modify this property to change the way the view’s contents are stretched to fill the available space. |
 
-https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html
+<a href="https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html" target="_blank">https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</a>
 
 ## License
 
@@ -245,7 +245,7 @@ Dance is a revolutionary new way to animate in iOS. Please feel free to send pul
 
 ## Questions?
 
-Contact me by [email](mailto:hello@saoudmr.com) or [twitter](https://twitter.com/sdrzn).
+Contact me by <a href="mailto:hello@saoudmr.com">email</a> or <a href="https://twitter.com/sdrzn" target="_blank">twitter</a>.
 
 ## Credit
 
