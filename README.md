@@ -268,7 +268,7 @@ Dance is a revolutionary new way to animate in iOS. Please feel free to send pul
 
 ## Questions?
 
-Contact me by <a href="mailto:hello@saoudmr.com">email</a> or <a href="https://twitter.com/sdrzn" target="_blank">twitter</a>.
+Contact me by <a href="mailto:hello@saoudmr.com">email</a> or <a href="https://twitter.com/sdrzn" target="_blank">twitter</a>. Please create an <a href="https://github.com/saoudrizwan/Dance/issues">issue</a> if you come across a bug or would like a feature to be added.
 
 ## Credit
 
