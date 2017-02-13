@@ -5,7 +5,7 @@
 <p align="center">
     <img src="https://img.shields.io/badge/Platform-iOS%2010%2B-blue.svg" alt="Platform: iOS 10+" />
     <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/Language-Swift%203-orange.svg" alt="Language: Swift 3" /></a>
-    <a href="https://cocoapods.org/pods/Dance"><img src="https://img.shields.io/badge/Pod-v1.0-red.svg" alt="CocoaPods compatible" /></a>
+    <a href="https://cocoapods.org/pods/Dance"><img src="https://img.shields.io/badge/CocoaPods-v1.0-red.svg" alt="CocoaPods compatible" /></a>
     <img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License: MIT" />
 </p>
 
@@ -15,12 +15,11 @@
   • <a href="#what">Constraints</a>
   • <a href="#function">Chaining</a>
   • <a href="#animatable">Animatable Properties</a>
-  • <a href="https://github.com/saoudrizwan/Dance/issues">Issues</a>
   • <a href="#license">License</a>
 </p>
-<p>
-Dance is a lightweight and straightforward animations framework built upon the new UIViewPropertyAnimator class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate{ … }` and can be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially forgiving, and provides the power that UIViewPropertyAnimator brings to iOS while at the same time maintaining ease of use.
-</p>
+
+Dance is a lightweight and straightforward animations framework built upon the new `UIViewPropertyAnimator` class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { … }` and can be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially forgiving, and provides the power that `UIViewPropertyAnimator` brings to iOS while at the same time maintaining ease of use.
+
 ## Quick Start
 ```swift
 import Dance
@@ -94,7 +93,7 @@ circle.dance.animate(duration: 10.0, curve: .easeInOut) { (make) in
     make.center = newCenter
 }
 ```
-#### Alternatively
+... alternatively:
 
 ```swift
 circle.dance.animate(duration: 2.0, curve: .easeInOut) {
@@ -239,6 +238,14 @@ Source: https://developer.apple.com/library/content/documentation/WindowsViews/C
 ## License
 
 Dance uses the MIT license. Please file an issue if you have any questions or if you'd like to share how you're using this tool.
+
+## Contribute
+
+Dance is a revolutionary new way to animate in iOS. Please feel free to send pull requests of any features you think would add to Dance and its philosophy.
+
+## Questions?
+
+Contact me by [email](mailto:hello@saoudmr.com) or [twitter](https://twitter.com/sdrzn).
 
 ## Credits
 
