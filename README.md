@@ -5,7 +5,7 @@
 <p align="center">
     <img src="https://img.shields.io/badge/Platform-iOS%2010%2B-blue.svg" alt="Platform: iOS 10+" />
     <a href="https://developer.apple.com/swift" target="_blank"><img src="https://img.shields.io/badge/Language-Swift%203-orange.svg" alt="Language: Swift 3" /></a>
-    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://img.shields.io/badge/CocoaPods-v1.0-red.svg" alt="CocoaPods compatible" /></a>
+    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://img.shields.io/badge/CocoaPods-v1.0.2-red.svg" alt="CocoaPods compatible" /></a>
     <img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License: MIT" />
 </p>
 
