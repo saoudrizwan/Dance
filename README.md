@@ -91,7 +91,7 @@ And `import Dance` in the files you'd like to use it.
 
 3. [Pause](#pausing-an-animation), [reverse](#reversing-an-animation), or [scrub through](#scrubbing-through-an-animation) the animation.
 
-4. Let the animtaion complete on its own or manually [finish](#finishing-an-animation) the animation early, triggering any completion blocks.
+4. Let the animation complete on its own or manually [finish](#finishing-an-animation) the animation early, triggering any completion blocks.
 
 ### Creating an Animation
 
