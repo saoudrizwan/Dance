@@ -216,7 +216,7 @@ circle.dance.hasAnimation: Bool { get }
 circle.dance.progress: CGFloat { get, set }
 ```
 ```swift
-circle.dance.state: UIViewAnimatingState { get } // .inactive, .active, .stopped
+circle.dance.state: DanceAnimationState { get } // .inactive, .active
 ```
 ```swift
 circle.dance.isRunning: Bool { get }
