@@ -270,13 +270,13 @@ circle.dance.start().reverse()
 ### Debugging
 
 Dance is *forgiving*, meaning that it handles any mistakes that you might make without causing any runtime errors. If you do make a mistake, for example starting an animation that doesn't exist, then Dance will print the following in the console:
-
-`** Dance Error: view with dance.tag = <tag> does not have an active animation! **`
-
+```
+** Dance Error: view with dance.tag = <tag> does not have an active animation! **
+```
 Dance assigns each dance animation a dance tag, which you can access like so:
-         
-`circle.dance.tag`
-         
+```swift         
+circle.dance.tag
+ ```       
 This way you can keep track of you views' dance animations and easily handle any of Dance's error print logs.
 
 Furthermore, you can get the state of a view's dance animation:
@@ -284,11 +284,11 @@ Furthermore, you can get the state of a view's dance animation:
 ```swift
 switch circle.dance.state {
 case .active:
-    // a dance animation has been created for the view and has been started
+    // A dance animation has been created for the view and has been started.
     // Note: a paused animation's state will return .active
 case .inactive:
-    // either there is no dance animation associated with the view, 
-    // or an animation exists but hasn't been started
+    // Either there is no dance animation associated with the view, 
+    // or an animation exists but hasn't been started.
 }
 ```
 
