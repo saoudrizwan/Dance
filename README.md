@@ -216,17 +216,18 @@ circle.dance.hasAnimation: Bool { get }
 circle.dance.progress: CGFloat { get, set }
 ```
 ```swift
-circle.dance.state: DanceAnimationState { get } // .inactive, .active
-```
-```swift
 circle.dance.isRunning: Bool { get }
 ```
 ```swift
 circle.dance.isReversed: Bool { get, set }
 ```
-
-`circle.dance.tag: Int` (see [Debugging](#debugging))
-
+For [debugging](#debugging) purposes:
+```swift
+circle.dance.state: DanceAnimationState { get } // .inactive, .active
+```
+```swift
+circle.dance.tag: Int { get }
+```
 
 ### What About Constraints?
 
