@@ -138,7 +138,7 @@ circle.dance.animate(duration: 2.0, controlPoint1: controlPoint1, controlPoint2:
 ```
 <img src="https://cloud.githubusercontent.com/assets/7799382/22905836/b5d6875c-f1f6-11e6-9ad8-30373ce211e8.png" alt="bezier curve">
 
-<sub>https://developer.apple.com/videos/play/wwdc2016/216/</sub>
+*<sub>https://developer.apple.com/videos/play/wwdc2016/216/</sub>*
 
 #### Sping-based Timing Information
 ```swift
@@ -304,7 +304,7 @@ case .inactive:
 | [backgroundColor](https://developer.apple.com/reference/uikit/uiview/1622591-backgroundcolor) | Modify this property to change the view’s background color. |
 | [contentStretch](https://developer.apple.com/reference/uikit/uiview/1622511-contentstretch)   | Modify this property to change the way the view’s contents are stretched to fill the available space. |
 
-<sub>https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</sub>
+*<sub>https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</sub>*
 
 ## Documentation
 Option + click on any of Dance's methods for detailed documentation.
