@@ -269,7 +269,7 @@ circle.dance.start().reverse()
 
 ### Debugging
 
-Dance is *forgiving*, meaning that it handles any mistakes that you might make without causing any runtime errors. If you do make a mistake, for example starting an animation that doesn't exist, then Dance will print the following in the console:
+Dance is *forgiving*, meaning that it handles any mistakes that you might make without causing any runtime errors. If you do make a mistake, for example starting an animation that doesn't exist, then Dance will print the following error in the console:
 ```
 ** Dance Error: view with dance.tag = <tag> does not have an active animation! **
 ```
