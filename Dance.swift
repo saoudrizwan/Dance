@@ -22,6 +22,14 @@
 
 import UIKit
 
+// MARK: - Dance Animation State
+
+@available(iOS 10.0, *)
+public enum DanceAnimationState {
+    case inactive // animation hasn't started yet, or no animation associated with view
+    case active // animation exists and has started
+}
+
 // MARK: - Dance Implementation
 
 fileprivate class DanceFactory {
@@ -160,9 +168,16 @@ fileprivate class DanceFactory {
     }
     
     /// Returns the view's UIViewPropertyAnimator current state (inactive, active, stopped).
-    func getState(tag: Int) -> UIViewAnimatingState {
+    func getState(tag: Int) -> DanceAnimationState {
         if let animator = animators[tag] {
-            return animator.state
+            switch animator.state {
+            case .inactive:
+                return DanceAnimationState.inactive
+            case .active:
+                return DanceAnimationState.active
+            case .stopped:
+                return DanceAnimationState.inactive
+            }
         } else {
             handle(error: .noAnimation, forViewWithTag: tag)
             return .inactive
@@ -228,6 +243,7 @@ fileprivate class DanceFactory {
 // This class should only be accessed through the 'dance' variable declared in the UIView extension below.
 // (Dance needs to have a public modifier in order to be accessed globally through the UIView Extension.)
 
+@available(iOS 10.0, *)
 public class Dance {
     
     fileprivate var dancingView: UIView!
@@ -257,8 +273,8 @@ public class Dance {
         }
     }
     
-    /// GET: Returns the view's current animation state (inactive, active, stopped). Dance ensures that your animation doesn't run into any problems, so you should only ever receive .inactive or .active for any view.
-    public var state: UIViewAnimatingState {
+    /// GET: Returns the view's current animation state (inactive or active.) If a view has a dance animation associated with it and has not been started, then state will return .inactive. Once the animation has been started, even if it is then paused, state will return .active until the animation finishes.
+    public var state: DanceAnimationState {
         get {
             return DanceFactory.instance.getState(tag: self.tag)
         }

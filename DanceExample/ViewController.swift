@@ -269,8 +269,6 @@ extension ViewController {
                 stateLabel.text = "circle.dance.state = .active"
             case .inactive:
                 stateLabel.text = "circle.dance.state = .inactive"
-            case .stopped:
-                stateLabel.text = "circle.dance.state = .stopped"
             }
             if circle.dance.isRunning {
                 isRunningLabel.text = "circle.dance.isRunning = true"
