@@ -278,6 +278,19 @@ Dance assigns each dance animation a dance tag, which you can access like so:
          
 This way you can keep track of you views' dance animations and easily handle any of Dance's error print logs.
 
+Furthermore, you can get the state of a view's dance animation:
+
+```swift
+switch circle.dance.state {
+case .active:
+    // a dance animation has been created for the view and has been started
+    // Note: a paused animation's state will return .active
+case .inactive:
+    // either there is no dance animation associated with the view, 
+    // or an animation exists but hasn't been started
+}
+```
+
 ## Animatable Properties
 
 | UIView Property      | Changes you can make                                       |
