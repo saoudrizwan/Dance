@@ -12,6 +12,7 @@
 <p align="center">
     <a href="#installation">Installation</a>
   • <a href="#usage">Usage</a>
+  • <a href="#debugging">Debugging</a>
   • <a href="#animatable-properties">Animatable Properties</a>
   • <a href="#license">License</a>
 </p>
@@ -224,6 +225,9 @@ circle.dance.isRunning: Bool { get }
 circle.dance.isReversed: Bool { get, set }
 ```
 
+`circle.dance.tag: Int` (see [Debugging](#debugging))
+
+
 ### What About Constraints?
 
 Dance works great with constraints. To animate constraint changes:
@@ -261,6 +265,18 @@ print(circle.dance.pause().progress)
 ```swift
 circle.dance.start().reverse()
 ```
+
+### Debugging
+
+Dance is *forgiving*, meaning that it handles any mistakes that you might make without causing any runtime errors. If you do make a mistake, for example starting an animation that doesn't exist, then Dance will print the following in the console:
+
+`** Dance Error: view with dance.tag = <tag> does not have an active animation! **`
+
+Dance assigns each dance animation a dance tag, which you can access like so:
+         
+`circle.dance.tag`
+         
+This way you can keep track of you views' dance animations and easily handle any of Dance's error print logs.
 
 ## Animatable Properties
 
