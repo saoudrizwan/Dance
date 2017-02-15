@@ -5,7 +5,7 @@
 <p align="center">
     <img src="https://cloud.githubusercontent.com/assets/7799382/22878899/6cac52f2-f190-11e6-8891-8941e998275d.png" alt="Platform: iOS 10+" />
     <a href="https://developer.apple.com/swift" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/22878900/6cac5612-f190-11e6-868a-09b9510e1d5b.png" alt="Language: Swift 3" /></a>
-    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/22878901/6cad9130-f190-11e6-990c-064280caead7.png" alt="CocoaPods compatible" /></a>
+    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/22909818/2bf3f9c4-f20b-11e6-9e77-6cd6960d4cfa.png" alt="CocoaPods compatible" /></a>
     <img src="https://cloud.githubusercontent.com/assets/7799382/22878898/6caa4ade-f190-11e6-892c-0d98c67b2bd1.png" alt="License: MIT" />
 </p>
 
@@ -17,7 +17,7 @@
   • <a href="#license">License</a>
 </p>
 
-Dance is a **powerful** and **straightforward** animation framework built upon the new <a href="https://developer.apple.com/reference/uikit/uiviewpropertyanimator" target="_blank">`UIViewPropertyAnimator`</a> class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { ... }`, which can then be started, paused, stopped, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially **forgiving**, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
+Dance is a **powerful** and **straightforward** animation framework built upon the new <a href="https://developer.apple.com/reference/uikit/uiviewpropertyanimator" target="_blank">`UIViewPropertyAnimator`</a> class introduced in iOS 10. With Dance, creating an animation for a view is as easy as calling `view.dance.animate { ... }`, which can then be started, paused, reversed, scrubbed through, and finished anywhere that the view can be referenced. Dance is especially **forgiving**, and provides the power that `UIViewPropertyAnimator` brings to iOS while maintaining ease of use.
 
 ## Quick Start
 ```swift
@@ -91,9 +91,7 @@ And `import Dance` in the files you'd like to use it.
 
 3. [Pause](#pausing-an-animation), [reverse](#reversing-an-animation), or [scrub through](#scrubbing-through-an-animation) the animation.
 
-4. [Finish](#finishing-an-animation) the animation, triggering any completion blocks.
-
-
+4. Let the animation complete on its own or manually [finish](#finishing-an-animation) the animation early, triggering any completion blocks.
 
 ### Creating an Animation
 
@@ -138,7 +136,7 @@ circle.dance.animate(duration: 2.0, controlPoint1: controlPoint1, controlPoint2:
 ```
 <img src="https://cloud.githubusercontent.com/assets/7799382/22905836/b5d6875c-f1f6-11e6-9ad8-30373ce211e8.png" alt="bezier curve">
 
-<sub>https://developer.apple.com/videos/play/wwdc2016/216/</sub>
+*<sub>https://developer.apple.com/videos/play/wwdc2016/216/</sub>*
 
 #### Sping-based Timing Information
 ```swift
@@ -216,17 +214,18 @@ circle.dance.hasAnimation: Bool { get }
 circle.dance.progress: CGFloat { get, set }
 ```
 ```swift
-circle.dance.state: UIViewAnimatingState { get } // .inactive, .active, .stopped
-```
-```swift
 circle.dance.isRunning: Bool { get }
 ```
 ```swift
 circle.dance.isReversed: Bool { get, set }
 ```
-
-`circle.dance.tag: Int` (see [Debugging](#debugging))
-
+For [debugging](#debugging) purposes:
+```swift
+circle.dance.state: DanceAnimationState { get } // .inactive, .active
+```
+```swift
+circle.dance.tag: Int { get }
+```
 
 ### What About Constraints?
 
@@ -268,15 +267,28 @@ circle.dance.start().reverse()
 
 ### Debugging
 
-Dance is *forgiving*, meaning that it handles any mistakes that you might make without causing any runtime errors. If you do make a mistake, for example starting an animation that doesn't exist, then Dance will print the following in the console:
-
-`** Dance Error: view with dance.tag = <tag> does not have an active animation! **`
-
+Dance is *forgiving*, meaning that it handles any mistakes that you might make without causing any runtime errors. If you do make a mistake, for example starting an animation that doesn't exist, then Dance will print the following error in the console:
+```
+** Dance Error: view with dance.tag = <tag> does not have an active animation! **
+```
 Dance assigns each dance animation a dance tag, which you can access like so:
-         
-`circle.dance.tag`
-         
+```swift         
+circle.dance.tag
+ ```       
 This way you can keep track of you views' dance animations and easily handle any of Dance's error print logs.
+
+Furthermore, you can get the state of a view's dance animation:
+
+```swift
+switch circle.dance.state {
+case .active:
+    // A dance animation has been created for the view and has been started.
+    // Note: a paused animation's state will return .active
+case .inactive:
+    // Either there is no dance animation associated with the view, 
+    // or an animation exists but hasn't been started.
+}
+```
 
 ## Animatable Properties
 
@@ -290,7 +302,7 @@ This way you can keep track of you views' dance animations and easily handle any
 | [backgroundColor](https://developer.apple.com/reference/uikit/uiview/1622591-backgroundcolor) | Modify this property to change the view’s background color. |
 | [contentStretch](https://developer.apple.com/reference/uikit/uiview/1622511-contentstretch)   | Modify this property to change the way the view’s contents are stretched to fill the available space. |
 
-<sub>https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</sub>
+*<sub>https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</sub>*
 
 ## Documentation
 Option + click on any of Dance's methods for detailed documentation.
