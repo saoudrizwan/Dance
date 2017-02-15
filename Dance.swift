@@ -313,13 +313,12 @@ public class Dance {
     ///            * linear
     ///   - animation: Any changes to commit to the view during the animation (can be any property defined in Table 4-1 in https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html)
     @discardableResult public func animate(duration: TimeInterval, curve: UIViewAnimationCurve, _ animation: @escaping (make) -> Void) -> Dance {
+        self.tag = DanceFactory.instance.tagCount
+        DanceFactory.instance.tagCount += 1
         
         if self.hasAnimation {
             DanceFactory.instance.finishAnimation(tag: self.tag, at: .current)
         }
-        
-        self.tag = DanceFactory.instance.tagCount
-        DanceFactory.instance.tagCount += 1
         
         DanceFactory.instance.createNewAnimator(tag: self.tag, duration: duration, curve: curve) {
             animation(self.dancingView)
@@ -335,13 +334,12 @@ public class Dance {
     ///   - timingParameters: The object providing the timing information. This object must adopt the UITimingCurveProvider protocol https://developer.apple.com/reference/uikit/uitimingcurveprovider
     ///   - animation: Any changes to commit to the view during the animation (can be any property defined in Table 4-1 in https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html)
     @discardableResult public func animate(duration: TimeInterval, timingParameters: UITimingCurveProvider, _ animation: @escaping (make) -> Void) -> Dance {
+        self.tag = DanceFactory.instance.tagCount
+        DanceFactory.instance.tagCount += 1
         
         if self.hasAnimation {
             DanceFactory.instance.finishAnimation(tag: self.tag, at: .current)
         }
-        
-        self.tag = DanceFactory.instance.tagCount
-        DanceFactory.instance.tagCount += 1
         
         DanceFactory.instance.createNewAnimator(tag: self.tag, duration: duration, timingParameters: timingParameters) {
             animation(self.dancingView)
@@ -358,13 +356,12 @@ public class Dance {
     ///   - point2: The second control point for the cubic Bézier timing curve.
     ///   - animation: Any changes to commit to the view during the animation (can be any property defined in Table 4-1 in https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html)
     @discardableResult public func animate(duration: TimeInterval, controlPoint1 point1: CGPoint, controlPoint2 point2: CGPoint, _ animation: @escaping (make) -> Void) -> Dance {
+        self.tag = DanceFactory.instance.tagCount
+        DanceFactory.instance.tagCount += 1
         
         if self.hasAnimation {
             DanceFactory.instance.finishAnimation(tag: self.tag, at: .current)
         }
-        
-        self.tag = DanceFactory.instance.tagCount
-        DanceFactory.instance.tagCount += 1
         
         DanceFactory.instance.createNewAnimator(tag: self.tag, duration: duration, controlPoint1: point1, controlPoint2: point2) {
             animation(self.dancingView)
@@ -380,13 +377,12 @@ public class Dance {
     ///   - dampingRatio: The damping ratio for the spring animation as it approaches its quiescent state. To smoothly decelerate the animation without oscillation, use a value of 1. Employ a damping ratio closer to zero to increase oscillation.
     ///   - animation: Any changes to commit to the view during the animation (can be any property defined in Table 4-1 in https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html)
     @discardableResult public func animate(duration: TimeInterval, dampingRatio: CGFloat, _ animation: @escaping (make) -> Void) -> Dance {
+        self.tag = DanceFactory.instance.tagCount
+        DanceFactory.instance.tagCount += 1
         
         if self.hasAnimation {
             DanceFactory.instance.finishAnimation(tag: self.tag, at: .current)
         }
-        
-        self.tag = DanceFactory.instance.tagCount
-        DanceFactory.instance.tagCount += 1
         
         DanceFactory.instance.createNewAnimator(tag: self.tag, duration: duration, dampingRatio: dampingRatio) {
             animation(self.dancingView)
