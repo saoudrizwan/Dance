@@ -25,7 +25,7 @@ import Dance
 
 class MyViewController: UIViewController {
 
-    var circle = UIView()
+    let circle = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
