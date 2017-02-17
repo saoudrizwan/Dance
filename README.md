@@ -288,6 +288,8 @@ case .active:
 case .inactive:
     // Either there is no dance animation associated with the view, 
     // or an animation exists but hasn't been started.
+    // Note: a finished animation is inactive because the animation
+    // effectively ceases to exist after it finishes
 }
 ```
 
