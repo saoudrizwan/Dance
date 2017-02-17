@@ -447,8 +447,14 @@ public class Dance {
     
     /// Sets the view's animation's fraction complete. If this is set in the middle of a running animation, the view will jump to it's new fraction complete value seamlessly.
     /// Alternative to setting the .progress value.
-    @discardableResult public func setProgress(to newProgress: CGFloatConvertable) -> Dance {
-        progress = newProgress.convertToCGFloat()
+    @discardableResult public func setProgress<T: ExpressibleByFloatLiteral>(to newProgress: T) -> Dance {
+        if let value = newProgress as? Float {
+            progress = CGFloat(value)
+        } else if let value = newProgress as? Double {
+            progress = CGFloat(value)
+        } else if let value = newProgress as? CGFloat {
+            progress = value
+        }        
         return dancingView.dance
     }
     
@@ -493,30 +499,4 @@ fileprivate class DanceExtensionStoredPropertyHandler {
         objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN)
     }
     
-}
-
-
-// MARK: - CGFloatConvertable Extension for Double, Float, CGFloat
-// (in order to accept non-CGFloats in setProgress(to:))
-
-public protocol CGFloatConvertable {
-    func convertToCGFloat() -> CGFloat
-}
-
-extension Double: CGFloatConvertable {
-    public func convertToCGFloat() -> CGFloat {
-        return CGFloat(self)
-    }
-}
-
-extension Float: CGFloatConvertable {
-    public func convertToCGFloat() -> CGFloat {
-        return CGFloat(self)
-    }
-}
-
-extension CGFloat: CGFloatConvertable {
-    public func convertToCGFloat() -> CGFloat {
-        return self
-    }
 }
