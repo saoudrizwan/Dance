@@ -34,8 +34,8 @@ class MyViewController: UIViewController {
             $0.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             $0.center = self.view.center
             $0.backgroundColor = .blue
+            // ... see 'Animateable Properties' for more options
         }.addCompletion { _ in
-            print("Animation completed!")
             self.view.backgroundColor = .green
         }.start(after: 5.0)
     }
