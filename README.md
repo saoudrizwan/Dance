@@ -27,10 +27,7 @@ class MyViewController: UIViewController {
 
     var circle = UIView()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // ...
-
+    func animateCircle() {
         circle.dance.animate(duration: 2.0, curve: .easeInOut) {
             $0.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             $0.center = self.view.center
