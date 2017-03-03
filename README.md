@@ -5,7 +5,7 @@
 <p align="center">
     <img src="https://cloud.githubusercontent.com/assets/7799382/22878899/6cac52f2-f190-11e6-8891-8941e998275d.png" alt="Platform: iOS 10+" />
     <a href="https://developer.apple.com/swift" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/22878900/6cac5612-f190-11e6-868a-09b9510e1d5b.png" alt="Language: Swift 3" /></a>
-    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/22964149/0532c9a8-f30c-11e6-93fc-30cdd13453e5.png" alt="CocoaPods compatible" /></a>
+    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/23048677/4dfdc7da-f46c-11e6-8468-958ae337c6ab.png" alt="CocoaPods compatible" /></a>
     <img src="https://cloud.githubusercontent.com/assets/7799382/22878898/6caa4ade-f190-11e6-892c-0d98c67b2bd1.png" alt="License: MIT" />
 </p>
 
@@ -25,17 +25,17 @@ import Dance
 
 class MyViewController: UIViewController {
 
-    var circle = UIView()
+    let circle = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         circle.dance.animate(duration: 2.0, curve: .easeInOut) {
             $0.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             $0.center = self.view.center
             $0.backgroundColor = .blue
+            // ... see 'Animatable Properties' for more options
         }.addCompletion { _ in
-            print("Animation completed!")
             self.view.backgroundColor = .green
         }.start(after: 5.0)
     }
@@ -177,7 +177,7 @@ circle.dance.pause()
 ```swift
 circle.dance.pause(after: 5.0) // for a delay (in seconds) before pausing the animation
 ```
-**Note:** this won't render the view at the paused position, you must call <a href="#finishing-an-animation">`.finish(at:)`</a> to do that.
+**Note:** this won't render the view at the paused position, you must then also call <a href="#finishing-an-animation">`.finish(at: .current)`</a> to do that.
 
 
 ### Reversing an Animation
@@ -285,8 +285,8 @@ case .active:
     // A dance animation has been created for the view and has been started.
     // Note: a paused animation's state will return .active
 case .inactive:
-    // Either there is no dance animation associated with the view, 
-    // or an animation exists but hasn't been started.
+    // Either there is no dance animation associated with the view, or an animation exists but hasn't been started.
+    // Note: a finished animation is inactive because the animation effectively ceases to exist after it finishes
 }
 ```
 
