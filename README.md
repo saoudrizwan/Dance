@@ -5,7 +5,7 @@
 <p align="center">
     <img src="https://cloud.githubusercontent.com/assets/7799382/22878899/6cac52f2-f190-11e6-8891-8941e998275d.png" alt="Platform: iOS 10+" />
     <a href="https://developer.apple.com/swift" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/22878900/6cac5612-f190-11e6-868a-09b9510e1d5b.png" alt="Language: Swift 3" /></a>
-    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/23048677/4dfdc7da-f46c-11e6-8468-958ae337c6ab.png" alt="CocoaPods compatible" /></a>
+    <a href="https://cocoapods.org/pods/Dance" target="_blank"><img src="https://cloud.githubusercontent.com/assets/7799382/23562550/baba145a-fff7-11e6-9f06-8a2a4e1d4d15.png" alt="CocoaPods compatible" /></a>
     <img src="https://cloud.githubusercontent.com/assets/7799382/22878898/6caa4ade-f190-11e6-892c-0d98c67b2bd1.png" alt="License: MIT" />
 </p>
 
