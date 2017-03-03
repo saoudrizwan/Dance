@@ -246,7 +246,7 @@ fileprivate class DanceFactory {
 @available(iOS 10.0, *)
 public class Dance {
     
-    fileprivate var dancingView: UIView!
+    fileprivate weak var dancingView: UIView!
     public var tag: Int = 0
     
     fileprivate init(dancingView: UIView) {
@@ -436,7 +436,7 @@ public class Dance {
     }
     
     /// Reverses the animation. Calling .reverse() on an already reversed view animation will make it animate in the initial direction.
-    /// Alternative to setting the .isReversed variable.
+    /// Alternative to setting the .isReversed variable
     @discardableResult public func reverse() -> Dance {
         let reversedState = DanceFactory.instance.getIsReversed(tag: self.tag) // leave this here in order to print debug error
         if self.hasAnimation {
@@ -446,7 +446,7 @@ public class Dance {
     }
     
     /// Sets the view's animation's fraction complete. If this is set in the middle of a running animation, the view will jump to it's new fraction complete value seamlessly.
-    /// Alternative to setting the .progress value.
+    /// Alternative to setting the .progress value
     @discardableResult public func setProgress<T: ExpressibleByFloatLiteral>(to newProgress: T) -> Dance {
         if let value = newProgress as? Float {
             progress = CGFloat(value)
@@ -466,37 +466,20 @@ public class Dance {
 @available(iOS 10.0, *)
 extension UIView {
     
+    fileprivate struct DanceAssociatedKey {
+        static var dance = "dance_key"
+    }
+    
     public var dance: Dance {
         get {
-            return DanceExtensionStoredPropertyHandler.associatedObject(base: self, key: &DanceExtensionStoredPropertyHandler.danceKey) {
-                return Dance(dancingView: self) // initial value - is reference type so it won't change
+            if let danceInstance = objc_getAssociatedObject(self, &DanceAssociatedKey.dance) as? Dance {
+                return danceInstance
+            } else {
+                let newDanceInstance = Dance(dancingView: self)
+                objc_setAssociatedObject(self, &DanceAssociatedKey.dance, newDanceInstance, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+                return newDanceInstance
             }
         }
-        set {
-            DanceExtensionStoredPropertyHandler.associateObject(base: self, key: &DanceExtensionStoredPropertyHandler.danceKey, value: newValue)
-        }
-    }
-    
-}
-
-
-// MARK: - Boilerplate code to store properties in Extensions using Associated Objects
-
-fileprivate class DanceExtensionStoredPropertyHandler {
-    
-    static var danceKey: UInt8 = 0
-    
-    static func associatedObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initialiser: () -> ValueType) -> ValueType {
-        if let associated = objc_getAssociatedObject(base, key) as? ValueType {
-            return associated
-        }
-        let associated = initialiser()
-        objc_setAssociatedObject(base, key, associated, .OBJC_ASSOCIATION_RETAIN)
-        return associated
-    }
-    
-    static func associateObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, value: ValueType) {
-        objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN)
     }
     
 }

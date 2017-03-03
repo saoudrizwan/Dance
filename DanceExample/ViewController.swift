@@ -166,6 +166,7 @@ class ViewController: UIViewController {
          
          This way you can keep track of you views' dance animations and easily handle any of Dance's error print logs.
          */
+        
     }
     
     @IBAction func startTapped(_ sender: Any) {
