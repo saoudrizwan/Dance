@@ -166,7 +166,6 @@ class ViewController: UIViewController {
          
          This way you can keep track of you views' dance animations and easily handle any of Dance's error print logs.
          */
-        
     }
     
     @IBAction func startTapped(_ sender: Any) {
@@ -202,9 +201,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pauseTapped(_ sender: Any) {
-        /*
-         Note: .pause() doesn't render the view at it's current position, you need to call .finish() in order to render the view and its subviews at the desired finishing position (.start, .current, or .end)
-         */
+        // Note: .pause() doesn't render the view at it's current position, you need to call .finish(at:) in order to render the view and its subviews at the desired finishing position (.start, .current, or .end)
         
         circle.dance.pause()
     }
@@ -219,15 +216,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func reverseTapped(_ sender: Any) {
-        /*
-         .reverse() reverses the animation block. Think of the animation block as a movie, and .reverse() plays the movie backwards.
-         */
-        
+        // .reverse() reverses the animation block. Think of the animation block as a movie, and .reverse() plays the movie backwards.
+ 
         circle.dance.reverse()
         
         /*
-         Note: you could just as easily do:
+         You could just as easily do:
          circle.dance.isReversed = true
+         */
+        
+        /*
+         Note: you can only reverse an animation if it's been started at least once. If you want to reverse an animation from the first start(), you could do something like:
+         circle.dance.start().reverse()
          */
     }
     
