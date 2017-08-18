@@ -305,7 +305,7 @@ case .inactive:
 *<sub>https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html</sub>*
 
 ## Documentation
-Alt + click on any of Dance's methods for detailed documentation.
+Option + click on any of Dance's methods for detailed documentation.
 <img src="https://cloud.githubusercontent.com/assets/7799382/22877101/ae6ae940-f188-11e6-8f60-7c69b94ade33.png" alt="documentation">
 
 ## License
