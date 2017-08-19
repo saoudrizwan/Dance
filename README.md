@@ -138,7 +138,7 @@ circle.dance.animate(duration: 2.0, controlPoint1: controlPoint1, controlPoint2:
 
 *<sub>https://developer.apple.com/videos/play/wwdc2016/216/</sub>*
 
-#### Sping-based Timing Information
+#### Spring-based Timing Information
 ```swift
 circle.dance.animate(duration: 2.0, dampingRatio: 0.5) {
     $0.center = newCenter
